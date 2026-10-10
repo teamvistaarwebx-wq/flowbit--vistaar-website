@@ -1,0 +1,1226 @@
+<title>Flowbit by Vistaar WebX</title>
+<meta name="description" content="Flowbit is one work OS for tasks, HR and payroll, CRM and GST billing. Start a 15-day free trial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+/*@@SHELL_CSS@@*/
+</style>
+<style>
+/*
+ * Layer 2: Flowbit body. Tokens come from flowbit-main/src/app/globals.css (measured from the Flowbit Figma).
+ * Every Flowbit token is prefixed --fb-* so it never collides with the Vistaar --color-* shell tokens.
+ * Layout: black stage, one plum light per section, glass product UI, the Momentum Ring as the recurring motif.
+ * Single committed look: light Vistaar shell around a dark Flowbit body, in every viewer theme.
+ */
+.fb {
+  /* Surfaces */
+  --fb-black: #000;
+  --fb-bg: #171717;
+  --fb-panel: #1a1a1a;
+  --fb-surface: rgba(255, 255, 255, 0.04);
+  --fb-surface-2: rgba(255, 255, 255, 0.07);
+  --fb-surface-3: rgba(255, 255, 255, 0.11);
+  --fb-solid: #27272b;
+  --fb-solid-2: #252629;
+  --fb-control: #171717;
+  --fb-cell: #232323;
+  /* Lines */
+  --fb-border: rgba(255, 255, 255, 0.1);
+  --fb-border-strong: rgba(255, 255, 255, 0.18);
+  --fb-line: #535353;
+  /* Text */
+  --fb-text: #ffffff;
+  --fb-text-2: #a3a1a4;
+  --fb-text-3: #858386;
+  --fb-name: #ebcbe2;
+  --fb-link: #ca81b8;
+  /* Brand */
+  --fb-indigo: #210b5d;
+  --fb-orchid: #bb62a5;
+  --fb-blush: #eac1dc;
+  --fb-violet: #9a80cc;
+  --fb-chip: #56397d;
+  --fb-plum: #744c6a;
+  /* Status */
+  --fb-success: #08ad93;
+  --fb-warning: #e4bd6d;
+  --fb-danger: #ff4540;
+  --fb-info: #6160ff;
+  --fb-orange: #e68763;
+  --fb-ring-track: #505050;
+  /* Modules */
+  --fb-work: #c084fc;
+  --fb-muster: #5eeab0;
+  --fb-orbit: #60a5fa;
+  --fb-folio: #f5b85c;
+  /* Gradients */
+  --fb-grad-button:
+    radial-gradient(80% 120% at 30% 125%, rgba(255, 235, 250, 0.4), transparent 60%),
+    linear-gradient(90deg, #e2d2e3 0%, #cfa7cb 20%, #a36ca8 42%, #6d428f 60%, #4a2f7b 85%, #3c2571 100%);
+  --fb-grad-text: linear-gradient(90deg, #f4e5f0 0%, #e6c6de 30%, #d4abcd 50%, #b68db9 70%, #806098 90%, #654988 100%);
+  --fb-grad-progress: linear-gradient(90deg, #f8eef6 0%, #e7d2e5 22%, #c8aaca 37%, #9074a5 51%, #4e387c 66%, #3e2a72 80%, #6b5e95 94%, #8e82b0 100%);
+  --fb-grad-brand:
+    radial-gradient(60% 55% at 12% 10%, #2a1564 0%, rgba(42, 21, 100, 0) 70%),
+    radial-gradient(55% 50% at 92% 62%, #ca81b8 0%, rgba(202, 129, 184, 0) 70%),
+    radial-gradient(65% 55% at 0% 100%, #fcfcfe 0%, rgba(252, 252, 254, 0) 70%),
+    linear-gradient(160deg, #2e1966 0%, #6a5290 35%, #c58ab9 68%, #e9c9e0 100%);
+  --fb-edge: linear-gradient(115deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.1) 35%, rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.2) 100%);
+  --fb-edge-frame: linear-gradient(200deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.12) 45%, rgba(255, 255, 255, 0.4) 100%);
+  /* Type */
+  --fb-font: "Work Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fb-fs-hero: clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);
+  --fb-fs-h2: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+  --fb-fs-h3: 1.25rem;
+  --fb-fs-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --fb-fs-body: 1rem;
+  --fb-fs-small: 0.875rem;
+  --fb-fs-label: 0.8125rem;
+  /* Radii: nothing above 16 */
+  --fb-r-sm: 8px;
+  --fb-r-md: 10px;
+  --fb-r-card: 12px;
+  --fb-r-hero: 16px;
+  /* Motion */
+  --fb-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --fb-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --fb-shadow-pop: 0 18px 48px -18px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  color-scheme: dark;
+  background: var(--fb-black);
+  color: var(--fb-text);
+  font-family: var(--fb-font);
+  font-size: var(--fb-fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+.fb ::selection { background: rgba(187, 98, 165, 0.45); color: var(--fb-text); }
+.fb :focus-visible { outline: 2px solid rgba(202, 129, 184, 0.9); outline-offset: 3px; border-radius: 6px; }
+.fb h1, .fb h2, .fb h3 { text-wrap: balance; font-weight: 600; color: var(--fb-text); }
+.fb p { text-wrap: pretty; }
+.fb ul, .fb ol { list-style: none; padding: 0; }
+.fb a { color: inherit; }
+
+/* ---------------------------------------------------------------- primitives */
+.fb-section { position: relative; isolation: isolate; padding-block: clamp(4.5rem, 3rem + 6vw, 8rem); }
+.fb-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: var(--fb-fs-label); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.fb-label svg { width: 14px; height: 14px; }
+.fb-h2 { font-size: var(--fb-fs-h2); line-height: 1.08; letter-spacing: -0.02em; margin-top: 14px; }
+.fb-lead { font-size: var(--fb-fs-lead); line-height: 1.6; color: rgba(255, 255, 255, 0.75); max-width: 38rem; margin-top: 16px; }
+.fb-head { display: grid; gap: 0; max-width: 46rem; }
+.fb-head--center { margin-inline: auto; text-align: center; justify-items: center; }
+.fb-grad-text { background-image: var(--fb-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fb-ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Glow: one light source per section, breathing slowly */
+.fb-glow { position: absolute; pointer-events: none; z-index: -1; border-radius: 50%; }
+.fb-glow--plum { background: radial-gradient(closest-side, #744c6a 0%, rgba(116, 76, 106, 0.45) 42%, rgba(116, 76, 106, 0) 100%); animation: fb-breathe 18s var(--fb-ease-in-out) infinite; }
+.fb-glow--indigo { background: radial-gradient(closest-side, rgba(42, 21, 100, 0.6) 0%, rgba(42, 21, 100, 0) 100%); }
+
+/* Buttons */
+.fb-btn {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 24px; border-radius: 999px; border: 0;
+  font-family: var(--fb-font); font-size: 0.9375rem; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer;
+  transition: transform 160ms var(--fb-ease-out), box-shadow 160ms var(--fb-ease-out), background-color 160ms var(--fb-ease-out);
+}
+.fb-btn:hover { transform: translateY(-1px); }
+.fb-btn:active { transform: scale(0.98); }
+.fb-btn--primary {
+  background-image: var(--fb-grad-button); background-size: 100% 100%, 112% 100%;
+  color: #fff; text-shadow: 0 1px 2px rgba(40, 20, 70, 0.55);
+  animation: fb-button-drift 9s var(--fb-ease-in-out) infinite alternate;
+  box-shadow: 0 10px 30px -12px rgba(163, 108, 168, 0.7);
+}
+.fb-btn--primary .fb-ico { stroke-width: 2; }
+.fb-btn--primary::after {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 30%; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-160%) skewX(-20deg);
+}
+.fb-btn--primary:hover::after { animation: fb-shimmer 900ms var(--fb-ease-out); }
+.fb-btn--ghost { background: var(--fb-control); color: var(--fb-text); box-shadow: inset 0 0 0 1px var(--fb-border-strong); }
+.fb-btn--ghost:hover { background: #222; }
+.fb-btn--dark { background: #111; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22); }
+.fb-btn--dark:hover { background: #000; }
+.fb-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Glass card with a lit hairline */
+.fb-glass {
+  position: relative; background: rgba(255, 255, 255, 0.045);
+  -webkit-backdrop-filter: blur(20px) saturate(120%); backdrop-filter: blur(20px) saturate(120%);
+  border-radius: var(--fb-r-card); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.fb-glass::before, .fb-edge::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: var(--fb-stroke, var(--fb-edge));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.fb-edge { position: relative; }
+.fb-lift { transition: transform 220ms var(--fb-ease-out), box-shadow 220ms var(--fb-ease-out); }
+.fb-lift:hover { transform: translateY(-4px); box-shadow: var(--fb-shadow-pop); }
+
+/* Mock window around product screens (MockFrame from the zip) */
+.fb-frame { position: relative; isolation: isolate; margin: 0; }
+.fb-frame__win { --fb-stroke: var(--fb-edge-frame); overflow: hidden; border-radius: var(--fb-r-hero); background: rgba(23, 23, 23, 0.92); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+.fb-frame__bar { display: flex; align-items: center; height: 36px; padding-inline: 16px; gap: 12px; border-bottom: 1px solid rgba(83, 83, 83, 0.7); background: var(--fb-panel); }
+.fb-frame__dots { display: flex; gap: 6px; width: 40px; }
+.fb-frame__dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.14); }
+.fb-frame__url { margin-inline: auto; display: inline-flex; align-items: center; gap: 6px; height: 24px; min-width: 0; padding-inline: 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.4); font-size: 11px; color: #979797; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fb-frame__url svg { width: 11px; height: 11px; opacity: 0.7; flex: none; }
+.fb-frame__body { padding: clamp(14px, 2vw, 20px); background: radial-gradient(60% 45% at 58% 0%, rgba(58, 40, 62, 0.55) 0%, rgba(23, 23, 23, 0) 75%); font-size: 12px; line-height: 1.4; }
+
+/* Small UI atoms used inside mocks */
+.fb-ui-label { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fb-text); display: inline-flex; align-items: center; gap: 6px; }
+.fb-ui-label svg { width: 13px; height: 13px; }
+.fb-pill { display: inline-flex; align-items: center; height: 26px; padding-inline: 12px; border-radius: 999px; font-size: 11px; font-weight: 500; white-space: nowrap; background: var(--fb-control); color: var(--fb-text); box-shadow: inset 0 0 0 1px var(--fb-border-strong); }
+.fb-pill--primary { background-image: var(--fb-grad-button); box-shadow: none; text-shadow: 0 1px 2px rgba(40, 20, 70, 0.5); }
+.fb-badge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding-inline: 8px; border-radius: 999px; font-size: 10px; font-weight: 600; }
+.fb-badge--ok { background: rgba(8, 173, 147, 0.16); color: #5fe0c6; }
+.fb-badge--warn { background: rgba(228, 189, 109, 0.16); color: var(--fb-warning); }
+.fb-badge--bad { background: rgba(255, 69, 64, 0.16); color: #ff8a86; }
+.fb-avatar { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 9px; font-weight: 600; color: #200c55; background: var(--fb-blush); flex: none; }
+.fb-muted { color: var(--fb-text-3); }
+.fb-soft { color: var(--fb-text-2); }
+.fb-num { font-variant-numeric: tabular-nums; }
+
+/* Reveal: content is visible at rest; only elements below the fold at load start lowered, then rise in. */
+.fb-reveal { transition: opacity 700ms var(--fb-ease-out), transform 700ms var(--fb-ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+.fb-reveal.is-pending { opacity: 0; transform: translateY(18px); }
+
+/* ---------------------------------------------------------------- hero */
+.fb-hero { position: relative; isolation: isolate; padding-block: clamp(3rem, 2rem + 4vw, 5.5rem) clamp(4rem, 3rem + 5vw, 7rem); }
+.fb-hero .fb-glow--plum { right: -12%; top: -38%; width: min(1100px, 120%); height: 860px; }
+.fb-hero .fb-glow--indigo { left: -14%; top: -24%; width: 720px; height: 620px; }
+.fb-hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 160px; background: linear-gradient(to bottom, transparent, var(--fb-black)); z-index: -1; pointer-events: none; }
+.fb-hero__grid { display: grid; gap: clamp(3rem, 2rem + 3vw, 4.5rem); align-items: center; }
+.fb-hero__copy { min-width: 0; }
+.fb-tag {
+  display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 6px; border-radius: 999px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.01em; color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 1px var(--fb-border);
+  text-decoration: none;
+}
+.fb-tag__ring { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.75); position: relative; flex: none; }
+.fb-tag__ring::after { content: ""; position: absolute; width: 5px; height: 5px; border-radius: 50%; background: rgba(255, 255, 255, 0.75); top: 3px; left: 3px; }
+.fb-hero__brand { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.fb-hero__logo { width: 132px; height: auto; display: block; }
+.fb-hero h1 { margin-top: 28px; font-size: var(--fb-fs-hero); line-height: 1.02; letter-spacing: -0.035em; max-width: 12ch; }
+.fb-hero__sub { margin-top: 22px; font-size: var(--fb-fs-lead); line-height: 1.55; color: rgba(255, 255, 255, 0.75); max-width: 34rem; }
+.fb-hero .fb-btn-row { margin-top: 34px; }
+.fb-hero__fine { margin-top: 18px; font-size: 13px; color: #979797; }
+.fb-hero__mods { margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(83, 83, 83, 0.7); display: flex; flex-wrap: wrap; gap: 10px 22px; }
+.fb-hero__mods li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255, 255, 255, 0.78); }
+.fb-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); flex: none; }
+
+.fb-hero__visual { position: relative; min-width: 0; }
+.fb-ribbon { position: absolute; pointer-events: none; mix-blend-mode: screen; z-index: -1; display: none; animation: fb-ribbon-float 14s var(--fb-ease-in-out) infinite; }
+.fb-ribbon--top { width: 300px; right: -78px; top: -84px; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 34%); mask-image: linear-gradient(to bottom, transparent 0%, #000 34%); }
+.fb-ribbon--bottom { width: 320px; right: -96px; bottom: -96px; animation-name: fb-ribbon-float-b; -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 40%); mask-image: linear-gradient(to top, transparent 0%, #000 40%); }
+.fb-checkin { position: absolute; left: -28px; bottom: -34px; width: 210px; border-radius: 12px; box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12); display: none; animation: fb-ribbon-float 12s var(--fb-ease-in-out) infinite; }
+
+/* Hero dashboard content */
+.fb-dash__crumb { display: flex; align-items: center; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid rgba(83, 83, 83, 0.7); font-size: 12px; }
+.fb-dash__crumb svg { width: 13px; height: 13px; }
+.fb-dash__hello { margin-top: 12px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.fb-dash__hello b { font-size: 16px; font-weight: 500; }
+.fb-dash__hello b span { color: var(--fb-name); }
+.fb-workday { margin-top: 12px; padding: 8px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); }
+.fb-workday__bar { position: relative; height: 28px; border-radius: 6px; background: rgba(255, 255, 255, 0.17); overflow: hidden; font-size: 10px; font-weight: 500; }
+.fb-workday__fill { position: absolute; inset: 0 auto 0 0; width: 54%; border-radius: 6px; background-image: var(--fb-grad-progress); }
+.fb-workday__fill::after { content: ""; position: absolute; inset: 0; width: 90px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent); animation: fb-sheen 7s var(--fb-ease-in-out) infinite; }
+.fb-workday__half { position: absolute; top: 0; bottom: 0; left: 33.3%; width: 10%; min-width: 52px; display: grid; place-items: center; border-radius: 6px; background: #5e4084; font-weight: 600; color: #fff; white-space: nowrap; }
+.fb-workday__t { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; }
+.fb-dash__grid { margin-top: 12px; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+.fb-ringcard { padding: 14px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; }
+.fb-legend { display: grid; gap: 9px; }
+.fb-legend li { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; font-size: 12px; }
+.fb-legend b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.fb-legend small { grid-column: 2 / -1; margin-top: -6px; font-size: 10px; color: var(--fb-text-3); }
+.fb-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fb-stat { padding: 12px; border-radius: var(--fb-r-card); background: linear-gradient(180deg, var(--fb-solid) 0%, var(--fb-solid-2) 100%); }
+.fb-stat p:first-child { font-size: 11px; color: var(--fb-text-2); }
+.fb-stat strong { display: block; margin-top: 4px; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fb-stat span { font-size: 10px; }
+.fb-spark { display: block; width: 100%; height: 22px; margin-top: 6px; }
+
+/* Momentum Ring */
+.fb-mring { position: relative; width: var(--size, 170px); aspect-ratio: 1; max-width: 100%; }
+.fb-mring svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.fb-mring__spin { transform-box: view-box; transform-origin: 50% 50%; animation: fb-spin var(--dur, 90s) linear infinite; animation-direction: var(--dir, normal); }
+.fb-mring__arc { stroke-dasharray: var(--len) 1000; animation: fb-draw 1100ms var(--fb-ease-out) both; animation-delay: calc(var(--i) * 110ms + 200ms); }
+.fb-mring__orbit { transform-box: view-box; transform-origin: 50% 50%; animation: fb-spin 14s linear infinite; }
+.fb-mring__mark { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.fb-mring__mark svg { width: 24%; height: auto; animation: fb-breathe 6s var(--fb-ease-in-out) infinite; }
+
+/* ---------------------------------------------------------------- problem / promise */
+.fb-split { display: grid; gap: 16px; margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
+.fb-mess, .fb-calm { position: relative; border-radius: var(--fb-r-hero); padding: clamp(22px, 3vw, 36px); min-width: 0; }
+.fb-mess { background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0 10px, transparent 10px 20px), var(--fb-panel); box-shadow: inset 0 0 0 1px var(--fb-border); }
+.fb-calm { background: radial-gradient(70% 90% at 100% 0%, rgba(116, 76, 106, 0.55), transparent 70%), radial-gradient(60% 80% at 0% 100%, rgba(42, 21, 100, 0.6), transparent 70%), #121014; }
+.fb-calm { --fb-stroke: var(--fb-edge-frame); }
+.fb-split h3 { font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.01em; }
+.fb-split .fb-label { color: var(--fb-text-2); }
+.fb-chaos { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+.fb-chaos li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px;
+  background: #222; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); font-size: 13.5px; color: var(--fb-text-2);
+  transform: rotate(var(--r, 0deg)); transition: transform 300ms var(--fb-ease-out);
+}
+.fb-mess:hover .fb-chaos li { transform: rotate(calc(var(--r, 0deg) * -1.4)) translateY(-2px); }
+.fb-chaos li svg { width: 14px; height: 14px; color: var(--fb-text-3); }
+.fb-chaos__count { margin-top: 24px; font-size: 13px; color: var(--fb-text-3); }
+.fb-calm__list { margin-top: 22px; display: grid; gap: 12px; }
+.fb-calm__list li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(255, 255, 255, 0.86); }
+.fb-calm__list svg { margin-top: 2px; color: var(--fb-blush); }
+
+/* ---------------------------------------------------------------- suite */
+.fb-suite .fb-glow--plum { left: 50%; top: -10%; width: 900px; height: 600px; transform: translateX(-50%); opacity: 0.55; }
+.fb-cards { margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.fb-mod {
+  --fb-stroke: linear-gradient(160deg, color-mix(in srgb, var(--c) 70%, transparent) 0%, rgba(255, 255, 255, 0.08) 38%, rgba(255, 255, 255, 0.04) 70%, rgba(255, 255, 255, 0.14) 100%);
+  position: relative; overflow: hidden; border-radius: var(--fb-r-hero); padding: 26px 24px 24px;
+  background: radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--c) 16%, transparent) 0%, transparent 60%), var(--fb-panel);
+  display: flex; flex-direction: column; min-width: 0;
+}
+.fb-mod__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fb-mod__icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; color: var(--c); background: color-mix(in srgb, var(--c) 14%, #141414); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 35%, transparent); }
+.fb-mod__icon svg { width: 22px; height: 22px; }
+.fb-mod__kind { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--c); }
+.fb-mod h3 { margin-top: 22px; font-size: 1.625rem; letter-spacing: -0.02em; line-height: 1.1; }
+.fb-mod__vp { margin-top: 10px; color: rgba(255, 255, 255, 0.78); font-size: 15px; line-height: 1.5; }
+.fb-mod ul { margin-top: auto; padding-top: 22px; display: grid; gap: 0; }
+.fb-mod li { display: flex; gap: 10px; align-items: flex-start; padding-block: 10px; border-top: 1px solid rgba(255, 255, 255, 0.07); font-size: 14px; color: var(--fb-text-2); }
+.fb-mod li svg { width: 16px; height: 16px; margin-top: 2px; color: var(--c); }
+
+/* ---------------------------------------------------------------- how it connects */
+.fb-flow { --n: 4; margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); position: relative; display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+.fb-flow__track { position: absolute; left: 31px; top: 32px; bottom: 32px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, var(--fb-orbit), var(--fb-folio), var(--fb-work), var(--fb-muster)); opacity: 0.35; }
+.fb-flow__pulse { position: absolute; left: 26px; top: 26px; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12), 0 0 24px 6px rgba(234, 193, 220, 0.7); animation: fb-flow-y 6.4s var(--fb-ease-in-out) infinite; }
+.fb-step { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; align-items: start; }
+.fb-step__node {
+  position: relative; z-index: 1; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  color: var(--c); background: #0e0e0e; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent);
+  animation: fb-node 6.4s linear infinite; animation-delay: calc(var(--i) * 1.6s - 0.4s);
+}
+.fb-step__node svg { width: 24px; height: 24px; }
+.fb-step__card { padding: 18px 20px; border-radius: var(--fb-r-card); background: var(--fb-panel); box-shadow: inset 0 0 0 1px var(--fb-border); min-width: 0; }
+.fb-step__when { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--c); }
+.fb-step h3 { margin-top: 6px; font-size: 1.125rem; line-height: 1.25; }
+.fb-step p { margin-top: 6px; font-size: 14px; color: var(--fb-text-2); }
+.fb-step__chip { margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; background: #222; font-size: 12px; color: rgba(255, 255, 255, 0.86); font-variant-numeric: tabular-nums; }
+.fb-flow__note { margin-top: 28px; font-size: 14px; color: var(--fb-text-3); }
+
+/* ---------------------------------------------------------------- showcase */
+.fb-show .fb-glow--plum { right: -20%; top: 10%; width: 900px; height: 700px; opacity: 0.7; }
+.fb-show__grid { margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); display: grid; gap: 28px; }
+.fb-tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 2px; margin: -2px; }
+.fb-tabs::-webkit-scrollbar { display: none; }
+.fb-tab {
+  flex: none; text-align: left; cursor: pointer; border: 0; font-family: var(--fb-font); color: var(--fb-text-2);
+  background: transparent; border-radius: var(--fb-r-card); padding: 12px 16px; box-shadow: inset 0 0 0 1px var(--fb-border);
+  transition: background-color 200ms var(--fb-ease-out), color 200ms var(--fb-ease-out), box-shadow 200ms var(--fb-ease-out);
+}
+.fb-tab:hover { color: var(--fb-text); background: var(--fb-surface); }
+.fb-tab[aria-selected="true"] { color: var(--fb-text); background: var(--fb-surface-2); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 60%, transparent); }
+.fb-tab__name { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
+.fb-tab__desc { display: none; margin-top: 6px; font-size: 14px; line-height: 1.5; color: var(--fb-text-2); }
+.fb-panel { min-width: 0; }
+.fb-panel[hidden] { display: none !important; }
+.fb-panel .fb-frame { animation: fb-scale-in 320ms var(--fb-ease-out); }
+.fb-panel__cap { margin-top: 14px; font-size: 14px; color: var(--fb-text-2); }
+
+/* Kanban mock */
+.fb-kanban { margin-top: 14px; display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fb-col { min-width: 0; border-radius: 10px; background: rgba(255, 255, 255, 0.025); padding: 8px; }
+.fb-col__h { padding: 0 4px 8px; }
+.fb-col__h p { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--fb-text-2); }
+.fb-col__h span { font-size: 10px; color: var(--fb-orbit); }
+.fb-deal { border-radius: 10px; background: var(--fb-cell); padding: 10px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
+.fb-deal + .fb-deal { margin-top: 8px; }
+.fb-deal--won { box-shadow: inset 0 0 0 1px rgba(8, 173, 147, 0.5); }
+.fb-deal b { display: block; font-size: 12px; font-weight: 500; }
+.fb-deal small { font-size: 10px; color: var(--fb-text-3); }
+.fb-deal__row { margin-top: 8px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.fb-deal__row strong { font-size: 12px; font-weight: 600; }
+.fb-deal__row span { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; color: var(--fb-text-3); }
+
+/* Invoice mock */
+.fb-inv__parties { margin-top: 14px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 11px; }
+.fb-inv__parties div { border-radius: 10px; background: rgba(255, 255, 255, 0.04); padding: 10px; min-width: 0; }
+.fb-inv__table { margin-top: 10px; border-radius: 10px; background: var(--fb-cell); overflow: hidden; font-size: 11px; }
+.fb-inv__tr { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.6fr) minmax(0, 1.1fr); gap: 8px; padding: 9px 12px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+.fb-inv__tr:first-child { border-top: 0; border-bottom: 1px solid rgba(83, 83, 83, 0.7); font-size: 10px; }
+.fb-inv__tr > :nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.fb-inv__tr b { display: block; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fb-inv__tot { margin: 10px 0 0 auto; max-width: 250px; display: grid; gap: 5px; font-size: 11px; }
+.fb-inv__tot div { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+.fb-inv__tot div:last-child { border-top: 1px solid rgba(83, 83, 83, 0.7); padding-top: 6px; font-size: 13px; font-weight: 600; }
+.fb-inv__tot div:last-child dd { color: var(--fb-folio); }
+.fb-inv__tot dd, .fb-inv__tot dt { margin: 0; }
+
+/* Attendance mock */
+.fb-seg { margin-top: 14px; display: flex; height: 8px; border-radius: 999px; overflow: hidden; gap: 2px; }
+.fb-seg i { display: block; height: 100%; }
+.fb-att { margin-top: 12px; border-radius: 10px; background: var(--fb-cell); overflow: hidden; }
+.fb-att__row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 3fr); gap: 10px; align-items: center; padding: 7px 10px; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+.fb-att__row:first-child { border-top: 0; border-bottom: 1px solid rgba(83, 83, 83, 0.7); font-size: 9px; }
+.fb-att__who { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.fb-att__who b { display: block; font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fb-att__who small { font-size: 9px; color: var(--fb-text-3); }
+.fb-att__days { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 3px; text-align: center; }
+.fb-att__days i { display: grid; place-items: center; height: 15px; border-radius: 999px; font-style: normal; font-size: 8px; font-weight: 600; color: #2f3440; }
+.fb-m-P { background: #08ad93; } .fb-m-L { background: #e4bd6d; } .fb-m-H { background: #e68763; } .fb-m-A { background: #ff6b67; } .fb-m-V { background: #9a80cc; } .fb-m-W { background: var(--fb-control); color: transparent !important; }
+.fb-att__legend { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 10px; color: rgba(255, 255, 255, 0.8); }
+.fb-att__legend span { display: inline-flex; align-items: center; gap: 5px; }
+.fb-att__legend i { width: 9px; height: 9px; border-radius: 50%; }
+
+/* ---------------------------------------------------------------- pricing */
+.fb-price-sec .fb-glow--indigo { left: 50%; top: 20%; width: 1000px; height: 700px; transform: translateX(-50%); }
+.fb-toggles { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.fb-seg-ctl { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; background: var(--fb-panel); box-shadow: inset 0 0 0 1px var(--fb-border); }
+.fb-seg-ctl button {
+  border: 0; cursor: pointer; font-family: var(--fb-font); font-size: 14px; font-weight: 500; color: var(--fb-text-2);
+  background: transparent; height: 38px; padding-inline: 18px; border-radius: 999px; white-space: nowrap;
+  transition: background-color 200ms var(--fb-ease-out), color 200ms var(--fb-ease-out);
+}
+.fb-seg-ctl button:hover { color: var(--fb-text); }
+.fb-seg-ctl button[aria-checked="true"] { background: var(--fb-control-active, #313131); color: var(--fb-text); box-shadow: inset 0 0 0 1px var(--fb-border-strong); }
+.fb-seg-ctl small { font-size: 11px; color: var(--fb-muster); margin-left: 6px; font-weight: 600; }
+.fb-plans { margin-top: 32px; }
+.fb-plans[hidden] { display: none !important; }
+.fb-suiteplan { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.fb-plan {
+  position: relative; border-radius: var(--fb-r-hero); padding: clamp(22px, 3vw, 32px); background: var(--fb-panel);
+  box-shadow: inset 0 0 0 1px var(--fb-border); display: flex; flex-direction: column; min-width: 0;
+}
+.fb-plan--feat { --fb-stroke: linear-gradient(135deg, #ffffff 0%, #e9b1de 30%, #bf74b4 55%, #592e71 100%); box-shadow: none; overflow: hidden; background: radial-gradient(80% 70% at 100% 0%, rgba(116, 76, 106, 0.55), transparent 65%), radial-gradient(60% 60% at 0% 100%, rgba(42, 21, 100, 0.5), transparent 70%), #141215; }
+.fb-plan--feat::before { padding: 2px; }
+.fb-plan__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.fb-plan h3 { font-size: 1.375rem; line-height: 1.2; }
+.fb-plan__for { margin-top: 6px; font-size: 14px; color: var(--fb-text-2); }
+.fb-plan__flag { display: inline-flex; height: 26px; align-items: center; padding-inline: 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: rgba(234, 193, 220, 0.14); color: var(--fb-blush); }
+.fb-price { margin-top: 22px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.fb-price__amt {
+  font-size: clamp(2.25rem, 1.8rem + 1.6vw, 3rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+  padding: 2px 8px; margin-left: -8px; border-radius: 8px; border: 1px dashed rgba(234, 193, 220, 0.5); font-variant-numeric: tabular-nums;
+}
+.fb-price__unit { font-size: 14px; color: var(--fb-text-2); }
+.fb-ph { display: inline-flex; align-items: center; height: 20px; padding-inline: 8px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(228, 189, 109, 0.16); color: var(--fb-warning); }
+.fb-plan__note { margin-top: 8px; font-size: 13px; color: var(--fb-text-3); min-height: 1.4em; }
+.fb-plan__mods { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.fb-plan__mods li { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding-inline: 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); font-size: 13px; }
+.fb-plan__list { margin-top: 22px; display: grid; gap: 10px; }
+.fb-plan__list li { display: flex; gap: 10px; font-size: 14px; color: rgba(255, 255, 255, 0.84); }
+.fb-plan__list svg { width: 16px; height: 16px; margin-top: 3px; color: var(--fb-blush); }
+.fb-plan .fb-btn { margin-top: 28px; align-self: flex-start; }
+.fb-plan__cta-push { margin-top: auto; }
+.fb-modplans { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.fb-modplans .fb-plan { --fb-stroke: linear-gradient(160deg, color-mix(in srgb, var(--c) 60%, transparent), rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.1)); box-shadow: none; }
+.fb-modplans .fb-plan h3 { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; }
+.fb-modplans .fb-price__amt { font-size: 2rem; }
+.fb-modplans .fb-plan__for { min-height: 3em; }
+.fb-price-foot { margin-top: 24px; text-align: center; font-size: 13px; color: var(--fb-text-3); }
+
+/* ---------------------------------------------------------------- why / proof */
+.fb-why__grid { display: grid; gap: clamp(2.5rem, 2rem + 2vw, 4rem); align-items: start; }
+.fb-why__points { margin-top: 32px; display: grid; gap: 0; border-top: 1px solid rgba(83, 83, 83, 0.7); }
+.fb-why__points li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding-block: 18px; border-bottom: 1px solid rgba(83, 83, 83, 0.7); }
+.fb-why__points svg { width: 22px; height: 22px; color: var(--fb-blush); margin-top: 1px; }
+.fb-why__points b { display: block; font-size: 16px; font-weight: 600; }
+.fb-why__points p { margin-top: 4px; font-size: 14px; color: var(--fb-text-2); }
+.fb-tiles { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fb-tile { padding: clamp(18px, 2.4vw, 26px); border-radius: var(--fb-r-hero); min-width: 0; }
+.fb-tile__v { font-size: clamp(2.25rem, 1.7rem + 2vw, 3.25rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.fb-tile__l { margin-top: 12px; font-size: 14px; color: var(--fb-text-2); line-height: 1.45; }
+.fb-tile .fb-ph { margin-top: 14px; }
+.fb-tile--ring { display: grid; place-items: center; text-align: center; }
+
+/* ---------------------------------------------------------------- FAQ */
+.fb-faq__grid { display: grid; gap: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.fb-faq__list { border-top: 1px solid rgba(83, 83, 83, 0.7); }
+.fb-faq__item { border-bottom: 1px solid rgba(83, 83, 83, 0.7); }
+.fb-faq__q { margin: 0; font-size: inherit; }
+.fb-faq__btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left;
+  padding: 22px 0; border: 0; background: transparent; cursor: pointer; color: var(--fb-text);
+  font-family: var(--fb-font); font-size: 1.0625rem; font-weight: 500; line-height: 1.35;
+}
+.fb-faq__btn:hover { color: var(--fb-blush); }
+.fb-faq__plus { position: relative; width: 28px; height: 28px; flex: none; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--fb-border-strong); transition: transform 300ms var(--fb-ease-out), background-color 300ms; }
+.fb-faq__plus::before, .fb-faq__plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); }
+.fb-faq__plus::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform 300ms var(--fb-ease-out); }
+.fb-faq__btn[aria-expanded="true"] .fb-faq__plus { background: rgba(234, 193, 220, 0.12); }
+.fb-faq__btn[aria-expanded="true"] .fb-faq__plus::after { transform: translate(-50%, -50%) rotate(0deg); }
+.fb-faq__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 320ms var(--fb-ease-out); }
+.fb-faq__a > div { overflow: hidden; }
+.fb-faq__a p { padding: 0 44px 22px 0; color: var(--fb-text-2); font-size: 15px; line-height: 1.6; max-width: 62ch; }
+.fb-faq__item.is-open .fb-faq__a { grid-template-rows: 1fr; }
+.fb-faq__a code { font-family: inherit; color: var(--fb-name); }
+
+/* ---------------------------------------------------------------- final CTA */
+.fb-cta-sec { padding-block: 0 clamp(4.5rem, 3rem + 6vw, 8rem); }
+.fb-cta {
+  position: relative; overflow: hidden; isolation: isolate; border-radius: var(--fb-r-hero);
+  padding: clamp(36px, 5vw, 72px) clamp(24px, 5vw, 72px);
+  background-image: var(--fb-grad-brand); background-size: 140% 140%, 150% 150%, 140% 140%, 100% 100%;
+  background-position: 0% 0%, 100% 60%, 0% 100%, 0 0; animation: fb-mesh 46s var(--fb-ease-in-out) infinite alternate;
+  display: grid; gap: 32px; align-items: center;
+}
+.fb-cta::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(20, 8, 46, 0.86) 0%, rgba(26, 12, 56, 0.66) 45%, rgba(26, 12, 56, 0.15) 100%); }
+.fb-cta__copy { min-width: 0; }
+.fb-cta h2 { font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); line-height: 1.04; letter-spacing: -0.03em; max-width: 14ch; }
+.fb-cta p { margin-top: 16px; font-size: var(--fb-fs-lead); color: rgba(255, 255, 255, 0.86); max-width: 32rem; }
+.fb-cta .fb-btn-row { margin-top: 30px; }
+.fb-cta__ring { justify-self: center; opacity: 0.95; }
+
+/* ---------------------------------------------------------------- keyframes */
+@keyframes fb-breathe { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.03); } }
+@keyframes fb-button-drift { from { background-position: 0 0, 0% 0; } to { background-position: 0 0, 100% 0; } }
+@keyframes fb-shimmer { from { transform: translateX(-160%) skewX(-20deg); } to { transform: translateX(420%) skewX(-20deg); } }
+@keyframes fb-ribbon-float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(3px, -6px, 0) rotate(1.5deg); } }
+@keyframes fb-ribbon-float-b { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(-4px, 5px, 0) rotate(-1.5deg); } }
+@keyframes fb-sheen { 0% { transform: translateX(-120px); } 60%, 100% { transform: translateX(520px); } }
+@keyframes fb-spin { to { transform: rotate(360deg); } }
+@keyframes fb-draw { from { stroke-dasharray: 0 1000; } }
+@keyframes fb-scale-in { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes fb-mesh { 0% { background-position: 0% 0%, 100% 60%, 0% 100%, 0 0; } 50% { background-position: 8% 6%, 92% 52%, 4% 96%, 0 0; } 100% { background-position: 3% 10%, 96% 70%, 0% 90%, 0 0; } }
+@keyframes fb-flow-y { 0% { transform: translateY(0); } 100% { transform: translateY(var(--travel, 0px)); } }
+@keyframes fb-flow-x { 0% { transform: translateX(0); } 100% { transform: translateX(var(--travel, 0px)); } }
+@keyframes fb-node {
+  0%, 30%, 100% { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent); background: #0e0e0e; }
+  8%, 20% { box-shadow: inset 0 0 0 1.5px var(--c), 0 0 0 6px color-mix(in srgb, var(--c) 14%, transparent), 0 0 36px color-mix(in srgb, var(--c) 55%, transparent); background: color-mix(in srgb, var(--c) 18%, #0e0e0e); }
+}
+
+/* ---------------------------------------------------------------- breakpoints */
+@media (min-width: 560px) {
+  .fb-dash__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .fb-kanban { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fb-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fb-modplans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 900px) {
+  .fb-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .fb-ribbon, .fb-checkin { display: block; }
+  .fb-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .fb-flow__track { left: 32px; right: 32px; top: 31px; bottom: auto; width: auto; height: 2px; background: linear-gradient(90deg, var(--fb-orbit), var(--fb-folio), var(--fb-work), var(--fb-muster)); }
+  .fb-flow__pulse { left: 26px; top: 26px; animation-name: fb-flow-x; }
+  .fb-step { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .fb-show__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); align-items: start; gap: 40px; }
+  .fb-tabs { flex-direction: column; overflow: visible; }
+  .fb-tab { padding: 16px 18px; }
+  .fb-tab__desc { display: block; }
+  .fb-suiteplan { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .fb-why__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .fb-faq__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); }
+  .fb-cta { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+}
+@media (min-width: 1100px) {
+  .fb-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); }
+  .fb-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fb-modplans { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fb-tiles { gap: 16px; }
+}
+@media (max-width: 420px) {
+  .fb-ringcard { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .fb-ringcard .fb-legend { width: 100%; }
+  .fb-btn-row .fb-btn { width: 100%; }
+  .fb-seg-ctl button { padding-inline: 12px; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fb *, .fb *::before, .fb *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .fb-reveal.is-pending { opacity: 1; transform: none; }
+  .fb-lift:hover, .fb-btn:hover { transform: none; }
+  .fb-flow__pulse { display: none; }
+}
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- ================= LAYER 1: Vistaar WebX header (verbatim from the About page) ================= -->
+<header class="site-header" data-astro-cid-fzpbxy5g><div class="container site-header__inner" data-astro-cid-fzpbxy5g><a class="logo logo--md" href="#" aria-label="Vistaar WebX home" data-astro-cid-f7espo7c><span class="logo__mark" aria-hidden="true" data-astro-cid-f7espo7c></span><span class="logo__text" aria-hidden="true" data-astro-cid-f7espo7c><span class="logo__name" data-astro-cid-f7espo7c>Vistaar <span class="logo__accent" data-astro-cid-f7espo7c>WebX</span></span><span class="logo__sub" data-astro-cid-f7espo7c>A brand of Sanskaar Webx LLP</span></span></a><button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle data-astro-cid-fzpbxy5g><span class="visually-hidden" data-astro-cid-fzpbxy5g>Menu</span><span class="site-header__burger" aria-hidden="true" data-astro-cid-fzpbxy5g></span></button><nav class="site-nav" id="site-nav" aria-label="Main" data-astro-cid-fzpbxy5g><ul class="site-nav__list" data-astro-cid-fzpbxy5g><li data-astro-cid-fzpbxy5g><a class="site-nav__link" href="#" data-astro-cid-fzpbxy5g>Home</a></li><li data-astro-cid-fzpbxy5g><a class="site-nav__link" href="#" data-astro-cid-fzpbxy5g>About us</a></li><li data-astro-cid-fzpbxy5g><a class="site-nav__link" href="#" data-astro-cid-fzpbxy5g>Our services</a></li><li data-astro-cid-fzpbxy5g><a class="site-nav__link is-highlight" href="#main" aria-current="page" data-astro-cid-fzpbxy5g>Flowbit</a></li></ul><a class="btn btn--dark site-nav__cta" href="#contact" data-astro-cid-fzpbxy5g>Book a consult</a></nav></div></header>
+<script type="module">var e=document.querySelector(`[data-nav-toggle]`),t=document.getElementById(`site-nav`);if(e&&t){let n=()=>{e.setAttribute(`aria-expanded`,`false`),t.classList.remove(`is-open`)};e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)!==`true`;e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)}),t.addEventListener(`click`,e=>{e.target.closest(`a`)&&n()}),document.addEventListener(`keydown`,r=>{r.key===`Escape`&&t.classList.contains(`is-open`)&&(n(),e.focus())})}</script>
+
+<!-- ================= LAYER 2: Flowbit body ================= -->
+<!-- Placeholder signup URL: replace every href="https://flowbit.com/signup?trial=15" with the live Flowbit .com signup link. -->
+<main id="main" class="fb">
+
+  <!-- Inline icon sprite (outline icons at 1.5px, as in the app) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-work" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-muster" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-orbit" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><path d="M10.4 21.9a10 10 0 0 0 9.94-15.42"/><path d="M13.5 2.1a10 10 0 0 0-9.84 15.42"/></symbol>
+    <symbol id="i-folio" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5v-6"/><path d="M8 15h3.5a2 2 0 0 0 0-4"/></symbol>
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-boxes" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4Z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.4 3.6a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.67 0 6.67-10 0-10"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M9.94 14.06 4 16l5.94 1.94L12 24l2.06-6.06L20 16l-5.94-1.94L12 8Z" transform="translate(0 -4)"/></symbol>
+    <symbol id="i-kanban" viewBox="0 0 24 24"><path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/></symbol>
+    <symbol id="i-finger" viewBox="0 0 24 24"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .13-5.35 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/></symbol>
+  </svg>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="fb-hero" aria-labelledby="fb-hero-title">
+    <div class="fb-glow fb-glow--plum" aria-hidden="true"></div>
+    <div class="fb-glow fb-glow--indigo" aria-hidden="true"></div>
+    <div class="container fb-hero__grid">
+      <div class="fb-hero__copy">
+        <div class="fb-hero__brand">
+          <span role="img" aria-label="Flowbit">@@LOGO_GRAD@@</span>
+          <span class="fb-tag"><span class="fb-tag__ring" aria-hidden="true"></span>A Vistaar WebX product</span>
+        </div>
+        <h1 id="fb-hero-title">One tab. <span class="fb-grad-text">The whole company.</span></h1>
+        <p class="fb-hero__sub">Tasks, people, pipeline and GST invoices in one workspace. Nothing gets typed twice, and nobody asks "which sheet is the latest?" again.</p>
+        <div class="fb-btn-row">
+          <a class="fb-btn fb-btn--primary" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="fb-btn fb-btn--ghost" href="#showcase"><svg class="fb-ico" aria-hidden="true"><use href="#i-play"/></svg> See it in action</a>
+        </div>
+        <p class="fb-hero__fine">No card. Every module switched on. Built for Indian teams of 6 to 150.</p>
+        <ul class="fb-hero__mods" aria-label="Modules">
+          <li><span class="fb-dot" style="--c:var(--fb-work)"></span>Work</li>
+          <li><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster</li>
+          <li><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit</li>
+          <li><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio</li>
+        </ul>
+      </div>
+
+      <div class="fb-hero__visual">
+        <img class="fb-ribbon fb-ribbon--top" src="@@RIBBON_TOP@@" alt="" width="406" height="350">
+        <img class="fb-ribbon fb-ribbon--bottom" src="@@RIBBON_BOTTOM@@" alt="" width="430" height="360">
+        <figure class="fb-frame" aria-label="Preview of the Flowbit Home dashboard with the Momentum Ring">
+          <div class="fb-frame__win fb-edge" aria-hidden="true">
+            <div class="fb-frame__bar"><span class="fb-frame__dots"><i></i><i></i><i></i></span><span class="fb-frame__url">@@MARK_WHITE@@flowbit.app/app</span><span style="width:40px"></span></div>
+            <div class="fb-frame__body">
+              <div class="fb-dash__crumb"><svg class="fb-ico"><use href="#i-house"/></svg> Home</div>
+              <div class="fb-dash__hello">
+                <div><b>Good afternoon, <span>Aditi</span></b><p class="fb-muted" style="font-size:11px;margin-top:2px">Thursday, 1 October</p></div>
+                <span class="fb-pill fb-pill--primary">New task</span>
+              </div>
+              <div class="fb-workday">
+                <div class="fb-workday__bar">
+                  <div class="fb-workday__fill"></div>
+                  <div class="fb-workday__half">Half day</div>
+                  <span class="fb-workday__t" style="left:8px;color:#3c2a5c">10AM</span>
+                  <span class="fb-workday__t" style="left:calc(54% + 6px)">02:50PM</span>
+                  <span class="fb-workday__t" style="right:8px">07PM</span>
+                </div>
+              </div>
+              <div class="fb-dash__grid">
+                <div class="fb-glass fb-ringcard">
+                  @@MRING_HERO@@
+                  <div style="min-width:0">
+                    <p class="fb-ui-label">Momentum · this week</p>
+                    <ul class="fb-legend" style="margin-top:10px">
+                      <li><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit<b>78%</b><small>7 of 9 follow-ups done</small></li>
+                      <li><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio<b>64%</b><small>₹6.8L of ₹10.6L collected</small></li>
+                      <li><span class="fb-dot" style="--c:var(--fb-work)"></span>Work<b>71%</b><small>41 tasks closed</small></li>
+                      <li><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster<b>90%</b><small>18 of 20 in today</small></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="fb-stats">
+                  <div class="fb-stat"><p>In progress</p><strong>12</strong><span style="color:#5fe0c6">+8%</span>
+                    <svg class="fb-spark" viewBox="0 0 100 22" preserveAspectRatio="none"><path d="M0 18 L16 14 L33 15 L50 10 L66 11 L83 6 L100 3" fill="none" stroke="#6160ff" stroke-width="1.5"/></svg></div>
+                  <div class="fb-stat"><p>Overdue</p><strong>3</strong><span style="color:#5fe0c6">−25%</span>
+                    <svg class="fb-spark" viewBox="0 0 100 22" preserveAspectRatio="none"><path d="M0 6 L16 9 L33 6 L50 13 L66 10 L83 13 L100 16" fill="none" stroke="#ff4540" stroke-width="1.5"/></svg></div>
+                  <div class="fb-stat"><p>Won this month</p><strong>₹24L</strong><span class="fb-muted">Nirmal Realty</span>
+                    <svg class="fb-spark" viewBox="0 0 100 22" preserveAspectRatio="none"><path d="M0 19 L16 17 L33 16 L50 12 L66 12 L83 7 L100 4" fill="none" stroke="#60a5fa" stroke-width="1.5"/></svg></div>
+                  <div class="fb-stat"><p>Invoices due</p><strong>₹68K</strong><span style="color:var(--fb-warning)">1 overdue</span>
+                    <svg class="fb-spark" viewBox="0 0 100 22" preserveAspectRatio="none"><path d="M0 12 L16 10 L33 14 L50 9 L66 11 L83 8 L100 9" fill="none" stroke="#f5b85c" stroke-width="1.5"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
+        <img class="fb-checkin" src="@@CHECKIN@@" alt="" width="466" height="155">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. PROBLEM / PROMISE ============ -->
+  <section class="fb-section" aria-labelledby="fb-problem-title" style="padding-top:clamp(2rem,1rem + 3vw,4rem)">
+    <div class="container">
+      <div class="fb-head fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-link"/></svg>The problem</span>
+        <h2 class="fb-h2" id="fb-problem-title">Five tools. None of them talk. You're the API.</h2>
+      </div>
+      <div class="fb-split">
+        <div class="fb-mess fb-reveal" style="--i:1">
+          <span class="fb-label">Before</span>
+          <h3 style="margin-top:12px">The stack you inherited</h3>
+          <ul class="fb-chaos">
+            <li style="--r:-2deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-sheet"/></svg>attendance_OCT_final_v7.xlsx</li>
+            <li style="--r:1.5deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-chat"/></svg>Tasks living in a WhatsApp group</li>
+            <li style="--r:-1deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-orbit"/></svg>A CRM nobody has opened since March</li>
+            <li style="--r:2deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-doc"/></svg>Invoice_template (2).docx</li>
+            <li style="--r:-1.5deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-clip"/></svg>Leave requests on sticky notes</li>
+            <li style="--r:1deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-mail"/></svg>"Can you resend that PDF?"</li>
+          </ul>
+          <p class="fb-chaos__count">Same client, typed into four places. Spelled three ways.</p>
+        </div>
+        <div class="fb-calm fb-edge fb-reveal" style="--i:2">
+          <span class="fb-label">After</span>
+          <h3 style="margin-top:12px">One connected work OS</h3>
+          <ul class="fb-calm__list">
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One login for the whole team, one bill for the whole company.</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One client list. A won deal becomes a billable client by itself.</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One record per person, from joining letter to payslip.</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Rupees, GST, PF and IST as the default. Nothing to configure.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. THE SUITE ============ -->
+  <section class="fb-section fb-suite" id="suite" aria-labelledby="fb-suite-title">
+    <div class="fb-glow fb-glow--plum" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fb-head fb-head--center fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-boxes"/></svg>The suite</span>
+        <h2 class="fb-h2" id="fb-suite-title">Four modules. Use one, or let them gang up.</h2>
+        <p class="fb-lead">Each one is complete on its own. Together they read the same records, so the work moves without you carrying it.</p>
+      </div>
+      <div class="fb-cards">
+        <article class="fb-mod fb-edge fb-lift fb-reveal" style="--c:var(--fb-muster);--i:0">
+          <div class="fb-mod__top"><span class="fb-mod__icon"><svg class="fb-ico" aria-hidden="true"><use href="#i-muster"/></svg></span><span class="fb-mod__kind">HRMS</span></div>
+          <h3>Muster</h3>
+          <p class="fb-mod__vp">From joining day to payslip, without the spreadsheet relay race.</p>
+          <ul>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Attendance, leave and claims</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Payroll with PF, ESI and PT</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Self-service, so HR stops being a help desk</li>
+          </ul>
+        </article>
+        <article class="fb-mod fb-edge fb-lift fb-reveal" style="--c:var(--fb-orbit);--i:1">
+          <div class="fb-mod__top"><span class="fb-mod__icon"><svg class="fb-ico" aria-hidden="true"><use href="#i-orbit"/></svg></span><span class="fb-mod__kind">CRM</span></div>
+          <h3>Orbit</h3>
+          <p class="fb-mod__vp">A pipeline that measures itself, so Monday reviews take five minutes.</p>
+          <ul>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Leads with stage rules that stick</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Deals board with value and odds</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Follow-ups that actually follow up</li>
+          </ul>
+        </article>
+        <article class="fb-mod fb-edge fb-lift fb-reveal" style="--c:var(--fb-folio);--i:2">
+          <div class="fb-mod__top"><span class="fb-mod__icon"><svg class="fb-ico" aria-hidden="true"><use href="#i-folio"/></svg></span><span class="fb-mod__kind">Billing</span></div>
+          <h3>Folio</h3>
+          <p class="fb-mod__vp">GST invoices, receipts and a very clear list of who owes you what.</p>
+          <ul>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>CGST and SGST, or IGST, picked for you</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Aging buckets and polite reminders</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Retainers that draft themselves monthly</li>
+          </ul>
+        </article>
+        <article class="fb-mod fb-edge fb-lift fb-reveal" style="--c:var(--fb-work);--i:3">
+          <div class="fb-mod__top"><span class="fb-mod__icon"><svg class="fb-ico" aria-hidden="true"><use href="#i-work"/></svg></span><span class="fb-mod__kind">Tasks &amp; projects</span></div>
+          <h3>Work</h3>
+          <p class="fb-mod__vp">Tasks, projects and the week in one place, with the deadlines in plain sight.</p>
+          <ul>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>List, board and calendar views</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Timers that become timesheets</li>
+            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Arc drafts the plan, you click Apply</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. HOW IT CONNECTS ============ -->
+  <section class="fb-section" id="connects" aria-labelledby="fb-flow-title">
+    <div class="container">
+      <div class="fb-head fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-link"/></svg>How it connects</span>
+        <h2 class="fb-h2" id="fb-flow-title">Win a deal. Watch it ripple.</h2>
+        <p class="fb-lead">No sync jobs, no CSV round trips. One "Won" in Orbit sets off the next three steps on its own.</p>
+      </div>
+      <ol class="fb-flow" data-flow>
+        <li class="fb-flow__track" aria-hidden="true"></li>
+        <li class="fb-flow__pulse" aria-hidden="true" data-flow-pulse></li>
+        <li class="fb-step fb-reveal" style="--c:var(--fb-orbit);--i:0">
+          <span class="fb-step__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-orbit"/></svg></span>
+          <div class="fb-step__card">
+            <p class="fb-step__when">Orbit · 11:02</p>
+            <h3>Deal marked Won</h3>
+            <p>Kalpa Studio signs the annual retainer. Sales gets the dopamine.</p>
+            <span class="fb-step__chip"><span class="fb-dot" style="--c:var(--fb-success)"></span>₹7.2L · Won</span>
+          </div>
+        </li>
+        <li class="fb-step fb-reveal" style="--c:var(--fb-folio);--i:1">
+          <span class="fb-step__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-folio"/></svg></span>
+          <div class="fb-step__card">
+            <p class="fb-step__when">Folio · 11:02</p>
+            <h3>Becomes a billing client</h3>
+            <p>GSTIN, address and place of supply carry over. The first invoice is a draft away.</p>
+            <span class="fb-step__chip">VWX/2026-27/0042 · Draft</span>
+          </div>
+        </li>
+        <li class="fb-step fb-reveal" style="--c:var(--fb-work);--i:2">
+          <span class="fb-step__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-work"/></svg></span>
+          <div class="fb-step__card">
+            <p class="fb-step__when">Work · 11:05</p>
+            <h3>Project kicks off</h3>
+            <p>A project with milestones and tasks, linked to the same client. Arc can draft the outline.</p>
+            <span class="fb-step__chip">3 milestones · 14 tasks</span>
+          </div>
+        </li>
+        <li class="fb-step fb-reveal" style="--c:var(--fb-muster);--i:3">
+          <span class="fb-step__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-muster"/></svg></span>
+          <div class="fb-step__card">
+            <p class="fb-step__when">Muster · 11:06</p>
+            <h3>Team allocated</h3>
+            <p>Assign people who are actually in. Leave and attendance show up before you pick.</p>
+            <span class="fb-step__chip"><span class="fb-avatar">PS</span><span class="fb-avatar" style="background:#c9b7ef">AR</span>2 assigned · 0 on leave</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 5. SHOWCASE ============ -->
+  <section class="fb-section fb-show" id="showcase" aria-labelledby="fb-show-title">
+    <div class="fb-glow fb-glow--plum" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fb-head fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-monitor"/></svg>See it in action</span>
+        <h2 class="fb-h2" id="fb-show-title">Dark, calm, and quick on its feet.</h2>
+        <p class="fb-lead">Real screens from the product. Built for the person who lives in it all day.</p>
+      </div>
+      <div class="fb-show__grid">
+        <div class="fb-tabs" role="tablist" aria-label="Product screens" data-tabs>
+          <button class="fb-tab" role="tab" id="tab-dash" aria-controls="panel-dash" aria-selected="true" style="--c:var(--fb-orchid)"><span class="fb-tab__name"><span class="fb-dot" style="--c:var(--fb-blush)"></span>Dashboard</span><span class="fb-tab__desc">Your day, your work and your team's pulse on one screen.</span></button>
+          <button class="fb-tab" role="tab" id="tab-crm" aria-controls="panel-crm" aria-selected="false" tabindex="-1" style="--c:var(--fb-orbit)"><span class="fb-tab__name"><span class="fb-dot" style="--c:var(--fb-orbit)"></span>CRM pipeline</span><span class="fb-tab__desc">Every deal by stage, with value, odds and owner.</span></button>
+          <button class="fb-tab" role="tab" id="tab-bill" aria-controls="panel-bill" aria-selected="false" tabindex="-1" style="--c:var(--fb-folio)"><span class="fb-tab__name"><span class="fb-dot" style="--c:var(--fb-folio)"></span>Billing</span><span class="fb-tab__desc">GST invoices that split tax by place of supply.</span></button>
+          <button class="fb-tab" role="tab" id="tab-hr" aria-controls="panel-hr" aria-selected="false" tabindex="-1" style="--c:var(--fb-muster)"><span class="fb-tab__name"><span class="fb-dot" style="--c:var(--fb-muster)"></span>HR</span><span class="fb-tab__desc">The attendance register, colour-coded, no formulas.</span></button>
+        </div>
+
+        <div>
+          <!-- Dashboard -->
+          <div class="fb-panel" role="tabpanel" id="panel-dash" aria-labelledby="tab-dash" tabindex="0">
+            <figure class="fb-frame" aria-label="Flowbit Home dashboard">
+              <div class="fb-frame__win fb-edge" aria-hidden="true">
+                <div class="fb-frame__bar"><span class="fb-frame__dots"><i></i><i></i><i></i></span><span class="fb-frame__url">@@MARK_WHITE@@flowbit.app/app</span><span style="width:40px"></span></div>
+                <div class="fb-frame__body">
+                  <div class="fb-dash__crumb"><svg class="fb-ico"><use href="#i-house"/></svg> Home</div>
+                  <div class="fb-dash__hello"><div><b>Good morning, <span>Rohan</span></b><p class="fb-muted" style="font-size:11px;margin-top:2px">Friday, 2 October</p></div><span class="fb-pill">Check in</span></div>
+                  <div class="fb-dash__grid">
+                    <div class="fb-glass" style="padding:14px">
+                      <p class="fb-ui-label"><svg class="fb-ico"><use href="#i-spark"/></svg>Arc · your week</p>
+                      <p style="margin-top:10px;font-size:12px;line-height:1.55" class="fb-soft">You closed 9 tasks, moved Saffron Threads to Proposal sent, and two invoices went out. The storefront brief is due Monday.</p>
+                      <div style="margin-top:12px;display:flex;gap:8px"><span class="fb-pill fb-pill--primary">Apply</span><span class="fb-pill">Discard</span></div>
+                    </div>
+                    <div class="fb-glass" style="padding:14px">
+                      <p class="fb-ui-label">Assigned to me</p>
+                      <ul style="margin-top:10px;display:grid;gap:8px;font-size:12px">
+                        <li style="display:flex;justify-content:space-between;gap:8px"><span>Storefront wireframes</span><span class="fb-badge fb-badge--bad">Today</span></li>
+                        <li style="display:flex;justify-content:space-between;gap:8px"><span>Kalpa kickoff deck</span><span class="fb-badge fb-badge--warn">Tue</span></li>
+                        <li style="display:flex;justify-content:space-between;gap:8px"><span>Send Q3 proposal</span><span class="fb-badge fb-badge--ok">Done</span></li>
+                        <li style="display:flex;justify-content:space-between;gap:8px"><span>Review timesheets</span><span class="fb-muted" style="font-size:10px">Fri</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+            <p class="fb-panel__cap">The Home dashboard: workday, tasks, and Arc's weekly summary waiting for your Apply.</p>
+          </div>
+
+          <!-- CRM -->
+          <div class="fb-panel" role="tabpanel" id="panel-crm" aria-labelledby="tab-crm" tabindex="0" hidden>
+            <figure class="fb-frame" aria-label="Orbit deal pipeline">
+              <div class="fb-frame__win fb-edge" aria-hidden="true">
+                <div class="fb-frame__bar"><span class="fb-frame__dots"><i></i><i></i><i></i></span><span class="fb-frame__url">@@MARK_WHITE@@flowbit.app/app/orbit/deals</span><span style="width:40px"></span></div>
+                <div class="fb-frame__body">
+                  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center"><span class="fb-ui-label"><svg class="fb-ico"><use href="#i-kanban"/></svg>Deals</span><span class="fb-muted" style="font-size:11px">Open pipeline <b style="color:var(--fb-text)">₹1.42 Cr</b></span></div>
+                  <div class="fb-kanban">
+                    <div class="fb-col"><div class="fb-col__h"><p>Qualified<span class="fb-muted">2</span></p><span>₹27.5L</span></div>
+                      <div class="fb-deal"><b>Brand refresh</b><small>Ananta Foods</small><div class="fb-deal__row"><strong>₹18L</strong><span>30%<i class="fb-avatar">RM</i></span></div></div>
+                      <div class="fb-deal"><b>Store rollout site</b><small>Kiran Home</small><div class="fb-deal__row"><strong>₹9.5L</strong><span>25%<i class="fb-avatar">AR</i></span></div></div>
+                    </div>
+                    <div class="fb-col"><div class="fb-col__h"><p>Proposal sent<span class="fb-muted">1</span></p><span>₹42L</span></div>
+                      <div class="fb-deal"><b>D2C storefront</b><small>Saffron Threads</small><div class="fb-deal__row"><strong>₹42L</strong><span>60%<i class="fb-avatar">RM</i></span></div></div>
+                    </div>
+                    <div class="fb-col"><div class="fb-col__h"><p>Negotiation<span class="fb-muted">1</span></p><span>₹72L</span></div>
+                      <div class="fb-deal"><b>Annual retainer</b><small>Kalpa Studio</small><div class="fb-deal__row"><strong>₹72L</strong><span>80%<i class="fb-avatar">PS</i></span></div></div>
+                    </div>
+                    <div class="fb-col"><div class="fb-col__h"><p>Won<span class="fb-muted">1</span></p><span>₹24L</span></div>
+                      <div class="fb-deal fb-deal--won"><b>Lead-gen landing pages</b><small>Nirmal Realty</small><div class="fb-deal__row"><strong>₹24L</strong><span>100%<i class="fb-avatar">AR</i></span></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+            <p class="fb-panel__cap">Orbit's deals board. Drag a card to Won and Folio already knows the client.</p>
+          </div>
+
+          <!-- Billing -->
+          <div class="fb-panel" role="tabpanel" id="panel-bill" aria-labelledby="tab-bill" tabindex="0" hidden>
+            <figure class="fb-frame" aria-label="Folio GST invoice">
+              <div class="fb-frame__win fb-edge" aria-hidden="true">
+                <div class="fb-frame__bar"><span class="fb-frame__dots"><i></i><i></i><i></i></span><span class="fb-frame__url">@@MARK_WHITE@@flowbit.app/app/folio/invoices/vwx-2026-27-0042</span><span style="width:40px"></span></div>
+                <div class="fb-frame__body">
+                  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:flex-start">
+                    <div><span class="fb-ui-label"><svg class="fb-ico"><use href="#i-file"/></svg>Tax invoice</span><p style="margin-top:4px;font-size:14px;font-weight:600">VWX/2026-27/0042</p><p class="fb-muted" style="font-size:11px">Issued 1 Oct 2026 · Due 16 Oct 2026</p></div>
+                    <span style="display:flex;gap:8px;align-items:center"><span class="fb-badge" style="background:rgba(96,165,250,.16);color:#93c2fb">Issued</span><span class="fb-pill">Email PDF</span></span>
+                  </div>
+                  <div class="fb-inv__parties">
+                    <div><p class="fb-muted">From</p><p style="font-weight:500">Vistaar WebX</p><p class="fb-muted">Bhopal, Madhya Pradesh (23)</p></div>
+                    <div><p class="fb-muted">Bill to · place of supply</p><p style="font-weight:500">Kalpa Studio LLP</p><p class="fb-muted">Indore, Madhya Pradesh (23)</p></div>
+                  </div>
+                  <div class="fb-inv__table">
+                    <div class="fb-inv__tr"><span>Item · SAC</span><span>Qty</span><span>Amount</span></div>
+                    <div class="fb-inv__tr"><span><b>Website design and build, phase 2</b><small class="fb-muted">998314</small></span><span class="fb-soft">1</span><span>₹1,20,000.00</span></div>
+                    <div class="fb-inv__tr"><span><b>Monthly maintenance retainer, October</b><small class="fb-muted">998314</small></span><span class="fb-soft">1</span><span>₹25,000.00</span></div>
+                  </div>
+                  <dl class="fb-inv__tot">
+                    <div><dt class="fb-muted">Taxable value</dt><dd>₹1,45,000.00</dd></div>
+                    <div><dt class="fb-muted">CGST 9%</dt><dd>₹13,050.00</dd></div>
+                    <div><dt class="fb-muted">SGST 9%</dt><dd>₹13,050.00</dd></div>
+                    <div><dt>Total</dt><dd>₹1,71,100.00</dd></div>
+                  </dl>
+                  <p class="fb-muted" style="margin-top:6px;text-align:right;font-size:10px">Rupees one lakh seventy-one thousand one hundred only</p>
+                </div>
+              </div>
+            </figure>
+            <p class="fb-panel__cap">Same state, so CGST and SGST. Different state, IGST. Numbers restart every April, as the taxman likes.</p>
+          </div>
+
+          <!-- HR -->
+          <div class="fb-panel" role="tabpanel" id="panel-hr" aria-labelledby="tab-hr" tabindex="0" hidden>
+            <figure class="fb-frame" aria-label="Muster attendance register">
+              <div class="fb-frame__win fb-edge" aria-hidden="true">
+                <div class="fb-frame__bar"><span class="fb-frame__dots"><i></i><i></i><i></i></span><span class="fb-frame__url">@@MARK_WHITE@@flowbit.app/app/hr/attendance</span><span style="width:40px"></span></div>
+                <div class="fb-frame__body">
+                  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center"><span class="fb-ui-label"><svg class="fb-ico"><use href="#i-finger"/></svg>Attendance · October 2026</span><span style="display:flex;gap:8px;align-items:center"><span class="fb-badge fb-badge--ok">Open</span><span class="fb-pill">Lock month</span></span></div>
+                  <div class="fb-seg"><i style="width:80%;background:#08ad93"></i><i style="width:17%;background:#e4bd6d"></i><i style="width:3%;background:#ff4540"></i></div>
+                  <div class="fb-att" data-att></div>
+                  <div class="fb-att__legend"><span><i class="fb-m-P"></i>Present</span><span><i class="fb-m-L"></i>Late</span><span><i class="fb-m-H"></i>Half day</span><span><i class="fb-m-A"></i>Absent</span><span><i class="fb-m-V"></i>Leave</span><span><i class="fb-m-W"></i>Week off</span></div>
+                </div>
+              </div>
+            </figure>
+            <p class="fb-panel__cap">Muster's register. Lock the month and payroll picks it up from there.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. PRICING ============ -->
+  <section class="fb-section fb-price-sec" id="pricing" aria-labelledby="fb-price-title">
+    <div class="fb-glow fb-glow--indigo" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fb-head fb-head--center fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-tag"/></svg>Pricing</span>
+        <h2 class="fb-h2" id="fb-price-title">Pay per seat. Not per surprise.</h2>
+        <p class="fb-lead">Take the whole suite or only the modules you need. Every plan starts with 15 free days.</p>
+      </div>
+
+      <div class="fb-toggles fb-reveal" style="--i:1">
+        <div class="fb-seg-ctl" role="radiogroup" aria-label="Plan type" data-toggle="plan">
+          <button type="button" role="radio" aria-checked="true" data-value="suite">Full suite</button>
+          <button type="button" role="radio" aria-checked="false" data-value="modules" tabindex="-1">Individual modules</button>
+        </div>
+        <div class="fb-seg-ctl" role="radiogroup" aria-label="Billing cycle" data-toggle="cycle">
+          <button type="button" role="radio" aria-checked="true" data-value="monthly">Monthly</button>
+          <button type="button" role="radio" aria-checked="false" data-value="yearly" tabindex="-1">Yearly<small>2 months free</small></button>
+        </div>
+      </div>
+
+      <!-- Suite -->
+      <div class="fb-plans" data-plans="suite">
+        <div class="fb-suiteplan">
+          <article class="fb-plan fb-plan--feat fb-edge">
+            <div class="fb-plan__head">
+              <div><h3>Flowbit Suite</h3><p class="fb-plan__for">All four modules for everyone. Each person counts once.</p></div>
+              <span class="fb-plan__flag">Most teams pick this</span>
+            </div>
+            <div class="fb-price"><span class="fb-price__amt">₹XXX</span><span class="fb-price__unit" data-unit="person">per person / month</span><span class="fb-ph">Placeholder</span></div>
+            <p class="fb-plan__note" data-cycle-note></p>
+            <ul class="fb-plan__mods" aria-label="Included modules">
+              <li><span class="fb-dot" style="--c:var(--fb-work)"></span>Work</li>
+              <li><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster</li>
+              <li><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit</li>
+              <li><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio</li>
+            </ul>
+            <a class="fb-btn fb-btn--primary" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="fb-plan">
+            <h3>Why the suite wins</h3>
+            <ul class="fb-plan__list">
+              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Orbit wins land in Folio without anyone retyping a GSTIN.</li>
+              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>On payroll and in the CRM? Still one seat.</li>
+              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Need a module next quarter? You already have it.</li>
+              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One invoice from us. Ironic, given what Folio does.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <!-- Modules -->
+      <div class="fb-plans" data-plans="modules" hidden>
+        <div class="fb-modplans">
+          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-muster)">
+            <h3><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster</h3>
+            <p class="fb-plan__for">Attendance, leave, claims and payroll.</p>
+            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="employee">per employee / month</span></div>
+            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
+            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=muster">Try Muster</a>
+          </article>
+          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-orbit)">
+            <h3><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit</h3>
+            <p class="fb-plan__for">Leads, deals, follow-ups and pipeline reports.</p>
+            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="sales user">per sales user / month</span></div>
+            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
+            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=orbit">Try Orbit</a>
+          </article>
+          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-folio)">
+            <h3><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio</h3>
+            <p class="fb-plan__for">GST invoices, receipts, ledger and aging.</p>
+            <div class="fb-price"><span class="fb-price__amt">₹XXX</span><span class="fb-price__unit" data-unit="workspace">per workspace / month</span></div>
+            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
+            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=folio">Try Folio</a>
+          </article>
+          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-work)">
+            <h3><span class="fb-dot" style="--c:var(--fb-work)"></span>Work</h3>
+            <p class="fb-plan__for">Tasks, projects, time and the Arc assistant.</p>
+            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="user">per user / month</span></div>
+            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
+            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=work">Try Work</a>
+          </article>
+        </div>
+      </div>
+      <p class="fb-price-foot">Prices shown are placeholders. Final per-seat prices exclude 18% GST and will be published on flowbit.com.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. WHY FLOWBIT / PROOF ============ -->
+  <section class="fb-section" id="why" aria-labelledby="fb-why-title">
+    <div class="container fb-why__grid">
+      <div class="fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-pen"/></svg>Why Flowbit</span>
+        <h2 class="fb-h2" id="fb-why-title">Built by designers who got tired of ugly software.</h2>
+        <p class="fb-lead">We run a design-first team. We used the usual stack, winced daily, and built the one we wanted to open every morning.</p>
+        <ul class="fb-why__points">
+          <li><svg class="fb-ico" aria-hidden="true"><use href="#i-pen"/></svg><div><b>Designed before it was coded</b><p>Every screen was drawn first, so it reads at a glance and doesn't need a training video.</p></div></li>
+          <li><svg class="fb-ico" aria-hidden="true"><use href="#i-rupee"/></svg><div><b>India is the default, not a setting</b><p>₹1,23,456 grouping, GST by place of supply, PF, ESI and PT by state, IST everywhere.</p></div></li>
+          <li><svg class="fb-ico" aria-hidden="true"><use href="#i-shield"/></svg><div><b>AI reads. People decide.</b><p>Arc drafts and searches. It never touches pay, attendance or invoice amounts without your click.</p></div></li>
+        </ul>
+      </div>
+      <div class="fb-tiles">
+        <div class="fb-tile fb-glass fb-reveal" style="--i:0"><p class="fb-tile__v fb-grad-text">XX%</p><p class="fb-tile__l">fewer tools on the company card</p><span class="fb-ph">Placeholder</span></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:1"><p class="fb-tile__v">XX hrs</p><p class="fb-tile__l">saved per month on payroll and invoicing</p><span class="fb-ph">Placeholder</span></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:2"><p class="fb-tile__v">XXX</p><p class="fb-tile__l">teams running their week on Flowbit</p><span class="fb-ph">Placeholder</span></div>
+        <div class="fb-tile fb-glass fb-tile--ring fb-reveal" style="--i:3">@@MRING_TILE@@<p class="fb-tile__l" style="margin-top:10px">4 modules, 1 login</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FAQ ============ -->
+  <section class="fb-section" id="faq" aria-labelledby="fb-faq-title" style="padding-top:clamp(2rem,1rem + 3vw,4rem)">
+    <div class="container fb-faq__grid">
+      <div class="fb-reveal">
+        <span class="fb-label">FAQ</span>
+        <h2 class="fb-h2" id="fb-faq-title">Fair questions.</h2>
+        <p class="fb-lead">Still curious? Write to <code style="font-family:inherit;color:var(--fb-name)">support@flowbit.app</code>.</p>
+      </div>
+      <div class="fb-faq__list" data-faq>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-b1">How does the 15-day free trial work?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-1" role="region" aria-labelledby="faq-b1"><div><p>Sign up and every module is switched on for 15 days. No card. We remind you 3 days and 1 day before it ends, so nothing sneaks up on you.</p></div></div>
+        </div>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-b2">What happens when the trial ends?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-2" role="region" aria-labelledby="faq-b2"><div><p>Your workspace goes read-only for 30 days. You can still see everything, just not change it. Pick a plan whenever you're ready. Nothing is deleted.</p></div></div>
+        </div>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-b3">Is my data safe, and is it mine?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-3" role="region" aria-labelledby="faq-b3"><div><p>Every record belongs to one workspace, and every request is checked against it. Roles decide who sees what, down to salaries. Sensitive changes are logged, and issued invoices are voided with a reason, never deleted.</p></div></div>
+        </div>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-b4">Can I buy only one module?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-4" role="region" aria-labelledby="faq-b4"><div><p>Yes. Pick any mix of Work, Muster, Orbit and Folio, or take the Suite for all four. Add people or modules any time and pay only for the rest of the current period.</p></div></div>
+        </div>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-b5">Can I bring my existing data?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-5" role="region" aria-labelledby="faq-b5"><div><p>Yes. Import your employee list into Muster and your leads into Orbit from a CSV. Each row is checked before anything is saved, so bad data stays out.</p></div></div>
+        </div>
+        <div class="fb-faq__item">
+          <h3 class="fb-faq__q"><button class="fb-faq__btn" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-b6">How do I get support?<span class="fb-faq__plus" aria-hidden="true"></span></button></h3>
+          <div class="fb-faq__a" id="faq-6" role="region" aria-labelledby="faq-b6"><div><p>Email <code>support@flowbit.app</code> and a person replies, not a ticket bot. Flowbit runs in any phone browser too, so there's no app to install before you can ask.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. FINAL CTA ============ -->
+  <section class="fb-cta-sec" aria-labelledby="fb-cta-title">
+    <div class="container">
+      <div class="fb-cta fb-reveal">
+        <div class="fb-cta__copy">
+          <h2 id="fb-cta-title">Fifteen days. Every module. Zero card.</h2>
+          <p>Bring the team, break things, see if it sticks. Worst case, you leave with a cleaner spreadsheet.</p>
+          <div class="fb-btn-row">
+            <a class="fb-btn fb-btn--dark" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="fb-btn fb-btn--ghost" href="#pricing" style="background:rgba(255,255,255,.08)">See pricing</a>
+          </div>
+        </div>
+        <div class="fb-cta__ring" aria-hidden="true">@@MRING_CTA@@</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= LAYER 1: Vistaar WebX footer (verbatim from the About page) ================= -->
+<footer class="site-footer" id="contact" data-astro-cid-nns7i3if><div class="container site-footer__grid" data-astro-cid-nns7i3if><div class="site-footer__brand" data-astro-cid-nns7i3if><a class="logo logo--lg" href="#" aria-label="Vistaar WebX home" data-astro-cid-f7espo7c><span class="logo__mark" aria-hidden="true" data-astro-cid-f7espo7c></span><span class="logo__text" aria-hidden="true" data-astro-cid-f7espo7c><span class="logo__name" data-astro-cid-f7espo7c>Vistaar <span class="logo__accent" data-astro-cid-f7espo7c>WebX</span></span><span class="logo__sub" data-astro-cid-f7espo7c>A brand of Sanskaar Webx LLP</span></span></a><p class="eyebrow eyebrow--plain" data-astro-cid-nns7i3if>Strategy · System · Scale</p><p class="site-footer__summary" data-astro-cid-nns7i3if>A brand, digital, research and technology consultancy.<br data-astro-cid-nns7i3if>A brand of Sanskaar Webx Services LLP.</p></div><nav class="site-footer__col" aria-label="Practice" data-astro-cid-nns7i3if><h2 class="eyebrow eyebrow--plain site-footer__title" data-astro-cid-nns7i3if>Practice</h2><ul data-astro-cid-nns7i3if><li data-astro-cid-nns7i3if><a href="#" data-astro-cid-nns7i3if>What we do</a></li><li data-astro-cid-nns7i3if><a href="#" data-astro-cid-nns7i3if>Growth &amp; Demand</a></li><li data-astro-cid-nns7i3if><a href="#" data-astro-cid-nns7i3if>Digital &amp; Commerce</a></li></ul></nav><nav class="site-footer__col" aria-label="Firm" data-astro-cid-nns7i3if><h2 class="eyebrow eyebrow--plain site-footer__title" data-astro-cid-nns7i3if>Firm</h2><ul data-astro-cid-nns7i3if><li data-astro-cid-nns7i3if><a href="#" data-astro-cid-nns7i3if>About</a></li><li data-astro-cid-nns7i3if><a href="#" data-astro-cid-nns7i3if>Career</a></li><li data-astro-cid-nns7i3if><a href="#main" data-astro-cid-nns7i3if>Flowbit</a></li></ul></nav><div class="site-footer__col" data-astro-cid-nns7i3if><h2 class="eyebrow eyebrow--plain site-footer__title" data-astro-cid-nns7i3if>Bhopal HQ</h2><address data-astro-cid-nns7i3if><p data-astro-cid-nns7i3if>C-8, Sahyog Parisar, E-8 Trilanga Main Road, Shahpura, Bhopal, Madhya Pradesh</p><p class="site-footer__contact" data-astro-cid-nns7i3if><a href="tel:+919559903700" data-astro-cid-nns7i3if>+91 95599 03700</a><br data-astro-cid-nns7i3if><a href="mailto:director@vistaarsws.com" data-astro-cid-nns7i3if>director@vistaarsws.com</a></p></address></div></div><div class="site-footer__base" data-astro-cid-nns7i3if><p class="container" data-astro-cid-nns7i3if>© 2026 Sanskaar Webx Services LLP · Made in Bhopal, India</p></div></footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Scroll reveals: only elements below the fold at load start lowered, so the page is complete at rest. */
+  var items = [].slice.call(document.querySelectorAll('.fb-reveal'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.remove('is-pending'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('is-pending'); io.observe(el); }
+    });
+  }
+
+  /* Connection flow: the travelling light covers the track length, whichever way the track runs. */
+  var flow = document.querySelector('[data-flow]');
+  var pulse = document.querySelector('[data-flow-pulse]');
+  function sizeFlow() {
+    if (!flow || !pulse) return;
+    var nodes = flow.querySelectorAll('.fb-step__node');
+    if (nodes.length < 2) return;
+    var a = nodes[0].getBoundingClientRect(), b = nodes[nodes.length - 1].getBoundingClientRect();
+    var horizontal = Math.abs(b.top - a.top) < 4;
+    pulse.style.setProperty('--travel', (horizontal ? b.left - a.left : b.top - a.top) + 'px');
+  }
+  sizeFlow();
+  window.addEventListener('resize', sizeFlow);
+
+  /* Showcase tabs (WAI-ARIA tabs pattern with arrow keys). */
+  var tablist = document.querySelector('[data-tabs]');
+  if (tablist) {
+    var tabs = [].slice.call(tablist.querySelectorAll('[role="tab"]'));
+    var select = function (tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(t); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = null;
+        if (k === 'ArrowRight' || k === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+        else if (k === 'ArrowLeft' || k === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (k === 'Home') n = tabs[0];
+        else if (k === 'End') n = tabs[tabs.length - 1];
+        if (n) { e.preventDefault(); select(n, true); }
+      });
+    });
+  }
+
+  /* Attendance register rows (data from the Muster mock in the Flowbit codebase). */
+  var att = document.querySelector('[data-att]');
+  if (att) {
+    var people = [
+      ['Aditi Singh', 'VW-0004', 'PPLPPPWPPPPHPW', '#eac1dc'],
+      ['Rohan Mehta', 'VW-0007', 'PPPPVVWPPLPPPW', '#c9b7ef'],
+      ['Kavya Nair', 'VW-0011', 'PLPPPPWPPPAPPW', '#b7e7d6'],
+      ['Arjun Rao', 'VW-0013', 'PPPHPPWPPPPPLW', '#f3d7a8'],
+      ['Priya Sharma', 'VW-0016', 'PPPPPPWVVPPPPW', '#bcd5f7']
+    ];
+    var head = '<div class="fb-att__row"><span>Employee</span><span class="fb-att__days">';
+    for (var d = 1; d <= 14; d++) head += '<span>' + d + '</span>';
+    head += '</span></div>';
+    att.innerHTML = head + people.map(function (p) {
+      var initials = p[0].split(' ').map(function (w) { return w[0]; }).join('');
+      var cells = p[2].split('').map(function (m) { return '<i class="fb-m-' + m + '">' + (m === 'W' ? '' : m) + '</i>'; }).join('');
+      return '<div class="fb-att__row"><span class="fb-att__who"><span class="fb-avatar" style="background:' + p[3] + '">' + initials + '</span><span style="min-width:0"><b>' + p[0] + '</b><small>' + p[1] + '</small></span></span><span class="fb-att__days">' + cells + '</span></div>';
+    }).join('');
+  }
+
+  /* Pricing toggles: plan type and billing cycle, as radio groups. */
+  var state = { plan: 'suite', cycle: 'monthly' };
+  function render() {
+    document.querySelectorAll('[data-plans]').forEach(function (el) { el.hidden = el.getAttribute('data-plans') !== state.plan; });
+    document.querySelectorAll('[data-unit]').forEach(function (el) {
+      var u = el.getAttribute('data-unit');
+      el.textContent = 'per ' + u + ' / month' + (state.cycle === 'yearly' ? ', billed yearly' : '');
+    });
+    document.querySelectorAll('[data-cycle-note]').forEach(function (el) {
+      el.textContent = state.cycle === 'yearly' ? 'Pay for 10 months, use it for 12.' : 'Billed monthly. Cancel any time.';
+    });
+  }
+  document.querySelectorAll('[data-toggle]').forEach(function (group) {
+    var key = group.getAttribute('data-toggle');
+    var btns = [].slice.call(group.querySelectorAll('[role="radio"]'));
+    var choose = function (b, focus) {
+      btns.forEach(function (x) { var on = x === b; x.setAttribute('aria-checked', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1; });
+      state[key] = b.getAttribute('data-value');
+      render();
+      if (focus) b.focus();
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { choose(b); });
+      b.addEventListener('keydown', function (e) {
+        if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].indexOf(e.key) < 0) return;
+        e.preventDefault();
+        var step = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
+        choose(btns[(i + step + btns.length) % btns.length], true);
+      });
+    });
+  });
+  render();
+
+  /* FAQ accordion: one open at a time, the first one open to start. */
+  var faq = document.querySelector('[data-faq]');
+  if (faq) {
+    var faqItems = [].slice.call(faq.querySelectorAll('.fb-faq__item'));
+    var setOpen = function (item, open) {
+      item.classList.toggle('is-open', open);
+      item.querySelector('.fb-faq__btn').setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    faqItems.forEach(function (item) {
+      item.querySelector('.fb-faq__btn').addEventListener('click', function () {
+        var willOpen = !item.classList.contains('is-open');
+        faqItems.forEach(function (o) { setOpen(o, false); });
+        setOpen(item, willOpen);
+      });
+    });
+    setOpen(faqItems[0], true);
+  }
+})();
+</script>
