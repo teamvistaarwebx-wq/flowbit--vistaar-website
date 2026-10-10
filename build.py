@@ -17,19 +17,21 @@ ASSETS = PAGE / "assets"
 OUT = ROOT / "flowbit.html"
 
 
-def data_uri(path: Path, webp: bool = True) -> str:
-    """PNG -> WebP data URI when Pillow is available (smaller page), else the PNG as is."""
+def data_uri(path: Path, max_width: int = 0, quality: int = 86) -> str:
+    """Image -> WebP data URI (optionally downscaled) when Pillow is available, else the file as is."""
     raw = path.read_bytes()
-    if webp:
-        try:
-            from PIL import Image
+    try:
+        from PIL import Image
 
-            buf = io.BytesIO()
-            Image.open(io.BytesIO(raw)).save(buf, "WEBP", quality=86, method=6)
-            return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
-        except Exception:
-            pass
-    return "data:image/png;base64," + base64.b64encode(raw).decode()
+        img = Image.open(io.BytesIO(raw))
+        if max_width and img.width > max_width:
+            img = img.resize((max_width, round(img.height * max_width / img.width)), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, "WEBP", quality=quality, method=6)
+        return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
+    except Exception:
+        mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}.get(path.suffix, "image/png")
+        return f"data:{mime};base64," + base64.b64encode(raw).decode()
 
 
 def svg_inline(path: Path, prefix: str, cls: str = "") -> str:
@@ -86,12 +88,11 @@ def main() -> None:
     shell_css = (PAGE / "vistaar-shell.css").read_text()
     replacements = {
         "/*@@SHELL_CSS@@*/": shell_css,
-        "@@LOGO_GRAD@@": svg_inline(ASSETS / "flowbit-logo-gradient.svg", "lg", "fb-hero__logo"),
         "@@MARK_WHITE@@": svg_inline(ASSETS / "flowbit-mark.svg", "mw"),
-        "@@RIBBON_TOP@@": data_uri(ASSETS / "auth-elbow-top.png"),
-        "@@RIBBON_BOTTOM@@": data_uri(ASSETS / "auth-elbow-bottom.png"),
-        "@@CHECKIN@@": data_uri(ASSETS / "widget-checked-in@2x.png"),
-        "@@MRING_HERO@@": momentum_ring("mr1", "150px"),
+        "@@APP_ICON@@": data_uri(ASSETS / "flowbit-app-icon.webp", max_width=400),
+        "@@DASHBOARD@@": data_uri(ASSETS / "dashboard-home.jpg", max_width=2000, quality=84),
+        "@@RIBBON_LEFT@@": data_uri(ASSETS / "onboarding-left-outer.png"),
+        "@@RIBBON_RIGHT@@": data_uri(ASSETS / "onboarding-right-outer.png"),
         "@@MRING_TILE@@": momentum_ring("mr2", "120px"),
         "@@MRING_CTA@@": momentum_ring("mr3", "min(280px, 70vw)"),
     }
