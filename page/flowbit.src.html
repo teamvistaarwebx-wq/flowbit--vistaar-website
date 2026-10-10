@@ -224,17 +224,22 @@
 .fb-in { animation: fb-rise 900ms var(--fb-ease-out) both; animation-delay: calc(var(--d, 0) * 90ms + 80ms); }
 
 /* The dashboard stage */
-.fb-hero__stage { --p: 1; position: relative; isolation: isolate; margin: clamp(3rem, 2rem + 4vw, 5rem) auto 0; max-width: 1240px; perspective: 1800px; }
+.fb-hero__stage { --p: 1; position: relative; isolation: isolate; margin: clamp(3rem, 2rem + 4vw, 5rem) auto clamp(-11rem, -12vw, -3rem); max-width: 1240px; perspective: 1800px; }
 .fb-hero__shot {
   --fb-stroke: var(--fb-edge-frame);
   position: relative; z-index: 1; margin: 0; border-radius: var(--fb-r-hero); overflow: hidden; background: var(--fb-bg);
-  box-shadow: 0 50px 120px -40px rgba(116, 76, 106, 0.7), 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+  /* The lower part of the screenshot (and its frame) melts into the black page. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgba(0, 0, 0, 0.6) 68%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 45%, rgba(0, 0, 0, 0.6) 68%, transparent 96%);
   transform-origin: 50% 50%;
   transform: translateY(calc((1 - var(--p)) * 64px)) rotateX(calc((1 - var(--p)) * 22deg)) scale(calc(0.9 + var(--p) * 0.1));
   opacity: calc(0.4 + var(--p) * 0.6);
   will-change: transform, opacity;
+  pointer-events: none;
 }
 .fb-hero__shot::before { z-index: 2; }
+/* Soft plum light behind the top of the dashboard (the shot itself is masked, so its glow lives here). */
+.fb-hero__stage::before { content: ""; position: absolute; z-index: 0; inset: -6% 6% 45%; border-radius: 50%; background: radial-gradient(closest-side, rgba(116, 76, 106, 0.55), rgba(116, 76, 106, 0) 100%); filter: blur(30px); pointer-events: none; }
 .fb-hero__shot img { display: block; width: 100%; height: auto; }
 .fb-ribbon { position: absolute; z-index: 0; pointer-events: none; mix-blend-mode: screen; display: none; height: auto; }
 .fb-ribbon--left { width: clamp(150px, 15vw, 210px); left: clamp(-120px, -8vw, -80px); top: -6%; transform: translateY(calc((1 - var(--p)) * 70px)); -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 92%); mask-image: linear-gradient(to right, #000 55%, transparent 92%); }
@@ -508,7 +513,8 @@
   .fb-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .fb-ribbon { display: block; }
   .fb-hero__top { grid-template-columns: minmax(0, 1fr) auto; }
-  .fb-hero__icon { order: 0; width: clamp(150px, 14vw, 196px); margin: -24px -20px 0 0; }
+  .fb-hero__top { align-items: center; }
+  .fb-hero__icon { order: 0; width: clamp(150px, 14vw, 196px); margin: 0 -20px 0 0; }
   .fb-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
   .fb-flow__track { left: 32px; right: 32px; top: 31px; bottom: auto; width: auto; height: 2px; background: linear-gradient(90deg, var(--fb-orbit), var(--fb-folio), var(--fb-work), var(--fb-muster)); }
   .fb-flow__pulse { left: 26px; top: 26px; animation-name: fb-flow-x; }
