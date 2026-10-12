@@ -253,15 +253,6 @@
 .fb-dash__hello b span { color: var(--fb-name); }
 .fb-dash__grid { margin-top: 12px; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
 
-/* Momentum Ring */
-.fb-mring { position: relative; width: var(--size, 170px); aspect-ratio: 1; max-width: 100%; }
-.fb-mring svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.fb-mring__spin { transform-box: view-box; transform-origin: 50% 50%; animation: fb-spin var(--dur, 90s) linear infinite; animation-direction: var(--dir, normal); }
-.fb-mring__arc { stroke-dasharray: var(--len) 1000; animation: fb-draw 1100ms var(--fb-ease-out) both; animation-delay: calc(var(--i) * 110ms + 200ms); }
-.fb-mring__orbit { transform-box: view-box; transform-origin: 50% 50%; animation: fb-spin 14s linear infinite; }
-.fb-mring__mark { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
-.fb-mring__mark svg { width: 24%; height: auto; animation: fb-breathe 6s var(--fb-ease-in-out) infinite; }
-
 /* ---------------------------------------------------------------- problem / promise */
 .fb-split { display: grid; gap: 16px; margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
 .fb-mess, .fb-calm { position: relative; border-radius: var(--fb-r-hero); padding: clamp(22px, 3vw, 36px); min-width: 0; }
@@ -385,51 +376,53 @@
 .fb-att__legend i { width: 9px; height: 9px; border-radius: 50%; }
 
 /* ---------------------------------------------------------------- pricing */
+/* Same structure as the useflowbit.com pricing page: cycle toggle, Suite as the chosen card, five product cards. */
 .fb-price-sec .fb-glow--indigo { left: 50%; top: 20%; width: 1000px; height: 700px; transform: translateX(-50%); }
-.fb-toggles { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.fb-toggles { margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .fb-seg-ctl { display: inline-flex; padding: 4px; gap: 4px; border-radius: 999px; background: var(--fb-panel); box-shadow: inset 0 0 0 1px var(--fb-border); }
 .fb-seg-ctl button {
   border: 0; cursor: pointer; font-family: var(--fb-font); font-size: 14px; font-weight: 500; color: var(--fb-text-2);
   background: transparent; height: 38px; padding-inline: 18px; border-radius: 999px; white-space: nowrap;
-  transition: background-color 200ms var(--fb-ease-out), color 200ms var(--fb-ease-out);
+  transition: background-color 200ms var(--fb-ease-out), color 200ms var(--fb-ease-out), box-shadow 200ms var(--fb-ease-out);
 }
 .fb-seg-ctl button:hover { color: var(--fb-text); }
-.fb-seg-ctl button[aria-checked="true"] { background: var(--fb-control-active, #313131); color: var(--fb-text); box-shadow: inset 0 0 0 1px var(--fb-border-strong); }
-.fb-seg-ctl small { font-size: 11px; color: var(--fb-muster); margin-left: 6px; font-weight: 600; }
-.fb-plans { margin-top: 32px; }
-.fb-plans[hidden] { display: none !important; }
-.fb-suiteplan { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
-.fb-plan {
-  position: relative; border-radius: var(--fb-r-hero); padding: clamp(22px, 3vw, 32px); background: var(--fb-panel);
-  box-shadow: inset 0 0 0 1px var(--fb-border); display: flex; flex-direction: column; min-width: 0;
+.fb-seg-ctl button[aria-checked="true"] { background: #313131; color: var(--fb-text); box-shadow: inset 0 0 0 1.5px var(--fb-orchid); }
+.fb-toggles__note { text-align: center; font-size: 13px; color: #979797; }
+.fb-pgrid { margin-top: 44px; display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.fb-pgrid > * { min-width: 0; }
+
+.fb-suitewrap { position: relative; margin-top: 10px; }
+.fb-suitewrap__flag { position: absolute; bottom: 100%; right: 24px; display: inline-flex; align-items: center; height: 20px; padding-inline: 12px; border-radius: 8px 8px 0 0; background: var(--fb-violet-2, #5d4083); font-size: 12px; font-weight: 600; color: #fff; }
+.fb-suitecard {
+  --fb-stroke: linear-gradient(135deg, #ffffff 0%, #e9b1de 35%, #bf74b4 60%, #592e71 100%);
+  position: relative; overflow: hidden; border-radius: 14px; background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
 }
-.fb-plan--feat { --fb-stroke: linear-gradient(135deg, #ffffff 0%, #e9b1de 30%, #bf74b4 55%, #592e71 100%); box-shadow: none; overflow: hidden; background: radial-gradient(80% 70% at 100% 0%, rgba(116, 76, 106, 0.55), transparent 65%), radial-gradient(60% 60% at 0% 100%, rgba(42, 21, 100, 0.5), transparent 70%), #141215; }
-.fb-plan--feat::before { padding: 2px; }
-.fb-plan__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.fb-plan h3 { font-size: 1.375rem; line-height: 1.2; }
-.fb-plan__for { margin-top: 6px; font-size: 14px; color: var(--fb-text-2); }
-.fb-plan__flag { display: inline-flex; height: 26px; align-items: center; padding-inline: 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: rgba(234, 193, 220, 0.14); color: var(--fb-blush); }
-.fb-price { margin-top: 22px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.fb-price__amt {
-  font-size: clamp(2.25rem, 1.8rem + 1.6vw, 3rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1;
-  padding: 2px 8px; margin-left: -8px; border-radius: 8px; border: 1px dashed rgba(234, 193, 220, 0.5); font-variant-numeric: tabular-nums;
-}
-.fb-price__unit { font-size: 14px; color: var(--fb-text-2); }
-.fb-ph { display: inline-flex; align-items: center; height: 20px; padding-inline: 8px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(228, 189, 109, 0.16); color: var(--fb-warning); }
-.fb-plan__note { margin-top: 8px; font-size: 13px; color: var(--fb-text-3); min-height: 1.4em; }
-.fb-plan__mods { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
-.fb-plan__mods li { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding-inline: 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.06); font-size: 13px; }
-.fb-plan__list { margin-top: 22px; display: grid; gap: 10px; }
-.fb-plan__list li { display: flex; gap: 10px; font-size: 14px; color: rgba(255, 255, 255, 0.84); }
-.fb-plan__list svg { width: 16px; height: 16px; margin-top: 3px; color: var(--fb-blush); }
-.fb-plan .fb-btn { margin-top: 28px; align-self: flex-start; }
-.fb-plan__cta-push { margin-top: auto; }
-.fb-modplans { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
-.fb-modplans .fb-plan { --fb-stroke: linear-gradient(160deg, color-mix(in srgb, var(--c) 60%, transparent), rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.1)); box-shadow: none; }
-.fb-modplans .fb-plan h3 { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; }
-.fb-modplans .fb-price__amt { font-size: 2rem; }
-.fb-modplans .fb-plan__for { min-height: 3em; }
-.fb-price-foot { margin-top: 24px; text-align: center; font-size: 13px; color: var(--fb-text-3); }
+.fb-suitecard::before { padding: 3px; z-index: 2; }
+.fb-suitecard__main { display: grid; gap: 28px; padding: clamp(22px, 3vw, 32px); }
+.fb-suitecard h3 { font-size: 1.125rem; }
+.fb-suitecard .fb-btn { margin-top: 24px; }
+.fb-suitecard__mods { display: grid; gap: 18px 24px; grid-template-columns: minmax(0, 1fr); }
+.fb-suitecard__mods b { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.fb-suitecard__mods b svg { width: 16px; height: 16px; color: var(--c); }
+.fb-suitecard__mods span { display: block; margin-top: 4px; padding-left: 24px; font-size: 12.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.62); }
+.fb-suitecard__band { background: #5d4083; padding: 14px clamp(22px, 3vw, 32px); font-size: 14px; color: #fff; }
+.fb-suitecard__band b { font-weight: 600; }
+
+.fb-pprice { margin-top: 16px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.fb-pprice strong { font-size: 36px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.fb-pprice--lg strong { font-size: 48px; }
+.fb-pprice span { font-size: 14px; color: #979797; }
+.fb-pcard { display: flex; flex-direction: column; padding: 24px; border-radius: 14px; }
+.fb-pcard h3 { display: flex; align-items: center; gap: 8px; font-size: 1.125rem; }
+.fb-pcard h3 svg { width: 18px; height: 18px; color: var(--c); }
+.fb-pcard__min { margin-top: 8px; font-size: 12px; color: #979797; font-variant-numeric: tabular-nums; }
+.fb-pcard__inc { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(107, 103, 108, 0.5); display: flex; gap: 10px; font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.82); }
+.fb-pcard__tick { flex: none; display: grid; place-items: center; width: 16px; height: 16px; margin-top: 3px; border-radius: 50%; background: #5d4083; }
+.fb-pcard__tick svg { width: 10px; height: 10px; stroke-width: 2.5; color: #fff; }
+.fb-pcard .fb-btn { margin-top: auto; width: 100%; min-height: 44px; font-size: 14px; }
+.fb-pcard__cta { margin-top: auto; padding-top: 24px; }
+.fb-price-notes { margin: 32px auto 0; max-width: 48rem; display: grid; gap: 6px; text-align: center; font-size: 12.5px; color: #979797; }
 
 /* ---------------------------------------------------------------- why / proof */
 .fb-why__grid { display: grid; gap: clamp(2.5rem, 2rem + 2vw, 4rem); align-items: start; }
@@ -442,8 +435,6 @@
 .fb-tile { padding: clamp(18px, 2.4vw, 26px); border-radius: var(--fb-r-hero); min-width: 0; }
 .fb-tile__v { font-size: clamp(2.25rem, 1.7rem + 2vw, 3.25rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
 .fb-tile__l { margin-top: 12px; font-size: 14px; color: var(--fb-text-2); line-height: 1.45; }
-.fb-tile .fb-ph { margin-top: 14px; }
-.fb-tile--ring { display: grid; place-items: center; text-align: center; }
 
 /* ---------------------------------------------------------------- FAQ */
 .fb-faq__grid { display: grid; gap: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
@@ -468,20 +459,26 @@
 .fb-faq__a code { font-family: inherit; color: var(--fb-name); }
 
 /* ---------------------------------------------------------------- final CTA */
+/* As on useflowbit.com: the drifting brand mesh, the white lockup and tagline, then the line and two buttons. */
 .fb-cta-sec { padding-block: 0 clamp(4.5rem, 3rem + 6vw, 8rem); }
 .fb-cta {
   position: relative; overflow: hidden; isolation: isolate; border-radius: var(--fb-r-hero);
-  padding: clamp(36px, 5vw, 72px) clamp(24px, 5vw, 72px);
+  padding: clamp(56px, 7vw, 88px) clamp(20px, 5vw, 48px);
   background-image: var(--fb-grad-brand); background-size: 140% 140%, 150% 150%, 140% 140%, 100% 100%;
   background-position: 0% 0%, 100% 60%, 0% 100%, 0 0; animation: fb-mesh 46s var(--fb-ease-in-out) infinite alternate;
-  display: grid; gap: 32px; align-items: center;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
 }
-.fb-cta::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(20, 8, 46, 0.86) 0%, rgba(26, 12, 56, 0.66) 45%, rgba(26, 12, 56, 0.15) 100%); }
-.fb-cta__copy { min-width: 0; }
-.fb-cta h2 { font-size: clamp(2rem, 1.3rem + 3vw, 3.5rem); line-height: 1.04; letter-spacing: -0.03em; max-width: 14ch; }
-.fb-cta p { margin-top: 16px; font-size: var(--fb-fs-lead); color: rgba(255, 255, 255, 0.86); max-width: 32rem; }
-.fb-cta .fb-btn-row { margin-top: 30px; }
-.fb-cta__ring { justify-self: center; opacity: 0.95; }
+/* The mesh turns near-white at the bottom left; a soft indigo shade under the copy keeps it readable. */
+.fb-cta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(58% 52% at 50% 62%, rgba(33, 11, 93, 0.5) 0%, rgba(33, 11, 93, 0.22) 55%, transparent 80%); }
+.fb-cta__logo svg { display: block; width: clamp(150px, 16vw, 188px); height: auto; }
+.fb-cta__tag { margin-top: 12px; font-size: 14px; color: rgba(255, 255, 255, 0.92); }
+.fb-cta h2 { margin-top: 40px; max-width: 18ch; font-size: clamp(1.875rem, 1.4rem + 1.8vw, 2.5rem); line-height: 1.2; letter-spacing: -0.02em; text-shadow: 0 1px 18px rgba(42, 21, 100, 0.35); }
+.fb-cta p.fb-cta__body { margin-top: 12px; max-width: 36rem; font-size: 1rem; line-height: 1.55; color: rgba(255, 255, 255, 0.92); }
+.fb-cta .fb-btn-row { margin-top: 32px; justify-content: center; }
+.fb-btn--black { background: #000; color: #fff; }
+.fb-btn--black:hover { background: rgba(0, 0, 0, 0.8); }
+.fb-btn--frost { background: rgba(0, 0, 0, 0.2); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.fb-btn--frost:hover { background: rgba(0, 0, 0, 0.3); }
 
 /* ---------------------------------------------------------------- keyframes */
 @keyframes fb-breathe { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.03); } }
@@ -507,7 +504,10 @@
   .fb-dash__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
   .fb-kanban { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .fb-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fb-modplans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fb-pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fb-suitewrap { grid-column: 1 / -1; }
+  .fb-pgrid > .fb-pcard:last-child { grid-column: 1 / -1; }
+  .fb-suitecard__mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 900px) {
   .fb-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
@@ -523,15 +523,16 @@
   .fb-tabs { flex-direction: column; overflow: visible; }
   .fb-tab { padding: 16px 18px; }
   .fb-tab__desc { display: block; }
-  .fb-suiteplan { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .fb-suitecard__main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; }
   .fb-why__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .fb-faq__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); }
-  .fb-cta { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
 }
 @media (min-width: 1100px) {
   .fb-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); }
   .fb-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .fb-modplans { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .fb-pgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .fb-pgrid > .fb-pcard { grid-column: span 2; }
+  .fb-pgrid > .fb-pcard:nth-last-child(-n+2) { grid-column: span 3; }
   .fb-tiles { gap: 16px; }
 }
 @media (max-width: 420px) {
@@ -555,7 +556,7 @@
 <script type="module">var e=document.querySelector(`[data-nav-toggle]`),t=document.getElementById(`site-nav`);if(e&&t){let n=()=>{e.setAttribute(`aria-expanded`,`false`),t.classList.remove(`is-open`)};e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)!==`true`;e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)}),t.addEventListener(`click`,e=>{e.target.closest(`a`)&&n()}),document.addEventListener(`keydown`,r=>{r.key===`Escape`&&t.classList.contains(`is-open`)&&(n(),e.focus())})}</script>
 
 <!-- ================= LAYER 2: Flowbit body ================= -->
-<!-- Placeholder signup URL: replace every href="https://flowbit.com/signup?trial=15" with the live Flowbit .com signup link. -->
+<!-- Trial and demo buttons link to useflowbit.com (signup takes ?plan= so checkout can preselect it). -->
 <main id="main" class="fb">
 
   <!-- Inline icon sprite (outline icons at 1.5px, as in the app) -->
@@ -597,7 +598,7 @@
           <h1 id="fb-hero-title" class="fb-in" style="--d:1">One tab. <span class="fb-grad-text">The whole company.</span></h1>
           <p class="fb-hero__sub fb-in" style="--d:2">Tasks, people, pipeline and GST invoices in one workspace. Nothing gets typed twice, and nobody asks "which sheet is the latest?" again.</p>
           <div class="fb-btn-row fb-in" style="--d:3">
-            <a class="fb-btn fb-btn--primary" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="fb-btn fb-btn--primary" href="https://www.useflowbit.com/signup">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="fb-btn fb-btn--ghost" href="#showcase"><svg class="fb-ico" aria-hidden="true"><use href="#i-play"/></svg> See it in action</a>
           </div>
           <p class="fb-hero__fine fb-in" style="--d:4">No card. Every module switched on. Built for Indian teams of 6 to 150.</p>
@@ -894,80 +895,75 @@
       </div>
 
       <div class="fb-toggles fb-reveal" style="--i:1">
-        <div class="fb-seg-ctl" role="radiogroup" aria-label="Plan type" data-toggle="plan">
-          <button type="button" role="radio" aria-checked="true" data-value="suite">Full suite</button>
-          <button type="button" role="radio" aria-checked="false" data-value="modules" tabindex="-1">Individual modules</button>
-        </div>
         <div class="fb-seg-ctl" role="radiogroup" aria-label="Billing cycle" data-toggle="cycle">
           <button type="button" role="radio" aria-checked="true" data-value="monthly">Monthly</button>
-          <button type="button" role="radio" aria-checked="false" data-value="yearly" tabindex="-1">Yearly<small>2 months free</small></button>
+          <button type="button" role="radio" aria-checked="false" data-value="yearly" tabindex="-1">Yearly · 2 months free</button>
         </div>
+        <p class="fb-toggles__note">15-day free trial of everything · No card needed · Prices exclude 18% GST</p>
       </div>
 
-      <!-- Suite -->
-      <div class="fb-plans" data-plans="suite">
-        <div class="fb-suiteplan">
-          <article class="fb-plan fb-plan--feat fb-edge">
-            <div class="fb-plan__head">
-              <div><h3>Flowbit Suite</h3><p class="fb-plan__for">All four modules for everyone. Each person counts once.</p></div>
-              <span class="fb-plan__flag">Most teams pick this</span>
+      <div class="fb-pgrid">
+        <div class="fb-suitewrap fb-reveal">
+          <span class="fb-suitewrap__flag">Best value</span>
+          <article class="fb-suitecard fb-edge" data-plan data-monthly="149" data-min="10" data-unit="person">
+            <div class="fb-suitecard__main">
+              <div>
+                <h3>Suite: all four</h3>
+                <p class="fb-pprice fb-pprice--lg"><strong data-amt>₹149</strong><span>/ person / <span data-per>month</span></span></p>
+                <a class="fb-btn fb-btn--primary" href="https://www.useflowbit.com/signup?plan=suite">Start your 15-day trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+              <ul class="fb-suitecard__mods">
+                <li style="--c:var(--fb-work)"><b><svg class="fb-ico" aria-hidden="true"><use href="#i-work"/></svg>Flowbit Work</b><span>Tasks, projects and teams in one calm place.</span></li>
+                <li style="--c:var(--fb-muster)"><b><svg class="fb-ico" aria-hidden="true"><use href="#i-muster"/></svg>Muster Business</b><span>HR and payroll built for Indian teams.</span></li>
+                <li style="--c:var(--fb-orbit)"><b><svg class="fb-ico" aria-hidden="true"><use href="#i-orbit"/></svg>Orbit</b><span>A CRM that follows up for you.</span></li>
+                <li style="--c:var(--fb-folio)"><b><svg class="fb-ico" aria-hidden="true"><use href="#i-folio"/></svg>Folio</b><span>GST invoices and receivables without the spreadsheet.</span></li>
+              </ul>
             </div>
-            <div class="fb-price"><span class="fb-price__amt">₹XXX</span><span class="fb-price__unit" data-unit="person">per person / month</span><span class="fb-ph">Placeholder</span></div>
-            <p class="fb-plan__note" data-cycle-note></p>
-            <ul class="fb-plan__mods" aria-label="Included modules">
-              <li><span class="fb-dot" style="--c:var(--fb-work)"></span>Work</li>
-              <li><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster</li>
-              <li><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit</li>
-              <li><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio</li>
-            </ul>
-            <a class="fb-btn fb-btn--primary" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </article>
-          <article class="fb-plan">
-            <h3>Why the suite wins</h3>
-            <ul class="fb-plan__list">
-              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Orbit wins land in Folio without anyone retyping a GSTIN.</li>
-              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>On payroll and in the CRM? Still one seat.</li>
-              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Need a module next quarter? You already have it.</li>
-              <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One invoice from us. Ironic, given what Folio does.</li>
-            </ul>
+            <p class="fb-suitecard__band">Every product, everyone on the team · <b data-minnote>Minimum 10 people (₹1,490 a month)</b></p>
           </article>
         </div>
+          <article class="fb-pcard fb-glass fb-lift fb-reveal" style="--c:var(--fb-work)" data-plan data-monthly="59" data-min="5" data-unit="user">
+            <h3><svg class="fb-ico" aria-hidden="true"><use href="#i-work"/></svg>Flowbit Work</h3>
+            <p class="fb-pprice"><strong data-amt>₹59</strong><span>/ user / <span data-per>month</span></span></p>
+            <p class="fb-pcard__min" data-minnote>Minimum 5 users (₹295 a month)</p>
+            <p class="fb-pcard__inc"><span class="fb-pcard__tick" aria-hidden="true"><svg class="fb-ico"><use href="#i-check"/></svg></span>Tasks, spaces, projects, teams, meetings, posts, time, whiteboards, reports and Arc.</p>
+            <div class="fb-pcard__cta"><a class="fb-btn fb-btn--ghost" href="https://www.useflowbit.com/signup?plan=custom&amp;products=work">Start free trial</a></div>
+          </article>
+          <article class="fb-pcard fb-glass fb-lift fb-reveal" style="--c:var(--fb-muster)" data-plan data-monthly="39" data-min="10" data-unit="employee">
+            <h3><svg class="fb-ico" aria-hidden="true"><use href="#i-muster"/></svg>Muster Starter</h3>
+            <p class="fb-pprice"><strong data-amt>₹39</strong><span>/ employee / <span data-per>month</span></span></p>
+            <p class="fb-pcard__min" data-minnote>Minimum 10 employees (₹390 a month)</p>
+            <p class="fb-pcard__inc"><span class="fb-pcard__tick" aria-hidden="true"><svg class="fb-ico"><use href="#i-check"/></svg></span>People, attendance, leave, reimbursements, letters and self-service. No payroll.</p>
+            <div class="fb-pcard__cta"><a class="fb-btn fb-btn--ghost" href="https://www.useflowbit.com/signup?plan=custom&amp;products=muster&amp;muster=starter">Start free trial</a></div>
+          </article>
+          <article class="fb-pcard fb-glass fb-lift fb-reveal" style="--c:var(--fb-muster)" data-plan data-monthly="79" data-min="10" data-unit="employee">
+            <h3><svg class="fb-ico" aria-hidden="true"><use href="#i-muster"/></svg>Muster Business</h3>
+            <p class="fb-pprice"><strong data-amt>₹79</strong><span>/ employee / <span data-per>month</span></span></p>
+            <p class="fb-pcard__min" data-minnote>Minimum 10 employees (₹790 a month)</p>
+            <p class="fb-pcard__inc"><span class="fb-pcard__tick" aria-hidden="true"><svg class="fb-ico"><use href="#i-check"/></svg></span>Everything in Starter, plus payroll with PF, ESI, PT and payslips.</p>
+            <div class="fb-pcard__cta"><a class="fb-btn fb-btn--ghost" href="https://www.useflowbit.com/signup?plan=custom&amp;products=muster&amp;muster=business">Start free trial</a></div>
+          </article>
+          <article class="fb-pcard fb-glass fb-lift fb-reveal" style="--c:var(--fb-orbit)" data-plan data-monthly="149" data-min="2" data-unit="sales user">
+            <h3><svg class="fb-ico" aria-hidden="true"><use href="#i-orbit"/></svg>Orbit</h3>
+            <p class="fb-pprice"><strong data-amt>₹149</strong><span>/ sales user / <span data-per>month</span></span></p>
+            <p class="fb-pcard__min" data-minnote>Minimum 2 sales users (₹298 a month)</p>
+            <p class="fb-pcard__inc"><span class="fb-pcard__tick" aria-hidden="true"><svg class="fb-ico"><use href="#i-check"/></svg></span>Leads, deals, contacts, activities and pipeline reports.</p>
+            <div class="fb-pcard__cta"><a class="fb-btn fb-btn--ghost" href="https://www.useflowbit.com/signup?plan=custom&amp;products=orbit">Start free trial</a></div>
+          </article>
+          <article class="fb-pcard fb-glass fb-lift fb-reveal" style="--c:var(--fb-folio)" data-plan data-monthly="399" data-min="1" data-unit="workspace" data-flat>
+            <h3><svg class="fb-ico" aria-hidden="true"><use href="#i-folio"/></svg>Folio</h3>
+            <p class="fb-pprice"><strong data-amt>₹399</strong><span>/ workspace / <span data-per>month</span></span></p>
+            <p class="fb-pcard__min" data-minnote>Flat per workspace (₹399 a month)</p>
+            <p class="fb-pcard__inc"><span class="fb-pcard__tick" aria-hidden="true"><svg class="fb-ico"><use href="#i-check"/></svg></span>GST invoices, quotes, receipts, ledger, aging and recurring retainers. 2 firms and 3 users included; each extra firm is ₹199 a month.</p>
+            <div class="fb-pcard__cta"><a class="fb-btn fb-btn--ghost" href="https://www.useflowbit.com/signup?plan=custom&amp;products=folio">Start free trial</a></div>
+          </article>
       </div>
 
-      <!-- Modules -->
-      <div class="fb-plans" data-plans="modules" hidden>
-        <div class="fb-modplans">
-          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-muster)">
-            <h3><span class="fb-dot" style="--c:var(--fb-muster)"></span>Muster</h3>
-            <p class="fb-plan__for">Attendance, leave, claims and payroll.</p>
-            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="employee">per employee / month</span></div>
-            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
-            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=muster">Try Muster</a>
-          </article>
-          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-orbit)">
-            <h3><span class="fb-dot" style="--c:var(--fb-orbit)"></span>Orbit</h3>
-            <p class="fb-plan__for">Leads, deals, follow-ups and pipeline reports.</p>
-            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="sales user">per sales user / month</span></div>
-            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
-            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=orbit">Try Orbit</a>
-          </article>
-          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-folio)">
-            <h3><span class="fb-dot" style="--c:var(--fb-folio)"></span>Folio</h3>
-            <p class="fb-plan__for">GST invoices, receipts, ledger and aging.</p>
-            <div class="fb-price"><span class="fb-price__amt">₹XXX</span><span class="fb-price__unit" data-unit="workspace">per workspace / month</span></div>
-            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
-            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=folio">Try Folio</a>
-          </article>
-          <article class="fb-plan fb-edge fb-lift" style="--c:var(--fb-work)">
-            <h3><span class="fb-dot" style="--c:var(--fb-work)"></span>Work</h3>
-            <p class="fb-plan__for">Tasks, projects, time and the Arc assistant.</p>
-            <div class="fb-price"><span class="fb-price__amt">₹XX</span><span class="fb-price__unit" data-unit="user">per user / month</span></div>
-            <span class="fb-ph" style="margin-top:10px;align-self:flex-start">Placeholder</span>
-            <a class="fb-btn fb-btn--ghost" href="https://flowbit.com/signup?trial=15&amp;module=work">Try Work</a>
-          </article>
-        </div>
-      </div>
-      <p class="fb-price-foot">Prices shown are placeholders. Final per-seat prices exclude 18% GST and will be published on flowbit.com.</p>
+      <ul class="fb-price-notes">
+        <li>Yearly costs 10 months' price for 12 months.</li>
+        <li>After the trial, the workspace stays read-only for 30 days while you choose a plan. Your data stays.</li>
+        <li>Pay by card, UPI or netbanking through Razorpay. Every payment gets a GST invoice from Flowbit Technologies.</li>
+      </ul>
     </div>
   </section>
 
@@ -985,10 +981,10 @@
         </ul>
       </div>
       <div class="fb-tiles">
-        <div class="fb-tile fb-glass fb-reveal" style="--i:0"><p class="fb-tile__v fb-grad-text">XX%</p><p class="fb-tile__l">fewer tools on the company card</p><span class="fb-ph">Placeholder</span></div>
-        <div class="fb-tile fb-glass fb-reveal" style="--i:1"><p class="fb-tile__v">XX hrs</p><p class="fb-tile__l">saved per month on payroll and invoicing</p><span class="fb-ph">Placeholder</span></div>
-        <div class="fb-tile fb-glass fb-reveal" style="--i:2"><p class="fb-tile__v">XXX</p><p class="fb-tile__l">teams running their week on Flowbit</p><span class="fb-ph">Placeholder</span></div>
-        <div class="fb-tile fb-glass fb-tile--ring fb-reveal" style="--i:3">@@MRING_TILE@@<p class="fb-tile__l" style="margin-top:10px">4 modules, 1 login</p></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:0"><p class="fb-tile__v fb-grad-text">15 days</p><p class="fb-tile__l">Free trial with every product switched on. No card needed.</p></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:1"><p class="fb-tile__v">4 in 1</p><p class="fb-tile__l">Work, Muster, Orbit and Folio on one login and one client list.</p></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:2"><p class="fb-tile__v">6–150</p><p class="fb-tile__l">People per team. Flowbit is built for growing Indian teams.</p></div>
+        <div class="fb-tile fb-glass fb-reveal" style="--i:3"><p class="fb-tile__v">₹ + GST</p><p class="fb-tile__l">Rupees, GST, PF, ESI and PT built in. Nothing to configure.</p></div>
       </div>
     </div>
   </section>
@@ -1034,15 +1030,14 @@
   <section class="fb-cta-sec" aria-labelledby="fb-cta-title">
     <div class="container">
       <div class="fb-cta fb-reveal">
-        <div class="fb-cta__copy">
-          <h2 id="fb-cta-title">Fifteen days. Every module. Zero card.</h2>
-          <p>Bring the team, break things, see if it sticks. Worst case, you leave with a cleaner spreadsheet.</p>
-          <div class="fb-btn-row">
-            <a class="fb-btn fb-btn--dark" href="https://flowbit.com/signup?trial=15">Start 15-day free trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="fb-btn fb-btn--ghost" href="#pricing" style="background:rgba(255,255,255,.08)">See pricing</a>
-          </div>
+        <span class="fb-cta__logo" role="img" aria-label="Flowbit">@@LOGO_WHITE@@</span>
+        <p class="fb-cta__tag">Everything in flow. Nothing in the way</p>
+        <h2 id="fb-cta-title">Start with everything switched on.</h2>
+        <p class="fb-cta__body">All four products for 15 days. No card needed, nothing to install, ₹ and GST built in.</p>
+        <div class="fb-btn-row">
+          <a class="fb-btn fb-btn--black" href="https://www.useflowbit.com/signup">Start your 15-day trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="fb-btn fb-btn--frost" href="https://www.useflowbit.com/contact">Book a demo</a>
         </div>
-        <div class="fb-cta__ring" aria-hidden="true">@@MRING_CTA@@</div>
       </div>
     </div>
   </section>
@@ -1144,24 +1139,29 @@
     }).join('');
   }
 
-  /* Pricing toggles: plan type and billing cycle, as radio groups. */
-  var state = { plan: 'suite', cycle: 'monthly' };
+  /* Pricing: monthly/yearly toggle. Yearly = 10 months' price for 12 (figures from Flowbit's plan table). */
+  var cycle = 'monthly';
+  var inr = function (n) { return '\u20b9' + n.toLocaleString('en-IN'); };
   function render() {
-    document.querySelectorAll('[data-plans]').forEach(function (el) { el.hidden = el.getAttribute('data-plans') !== state.plan; });
-    document.querySelectorAll('[data-unit]').forEach(function (el) {
-      var u = el.getAttribute('data-unit');
-      el.textContent = 'per ' + u + ' / month' + (state.cycle === 'yearly' ? ', billed yearly' : '');
-    });
-    document.querySelectorAll('[data-cycle-note]').forEach(function (el) {
-      el.textContent = state.cycle === 'yearly' ? 'Pay for 10 months, use it for 12.' : 'Billed monthly. Cancel any time.';
+    var months = cycle === 'yearly' ? 10 : 1, period = cycle === 'yearly' ? 'year' : 'month';
+    document.querySelectorAll('[data-plan]').forEach(function (card) {
+      var unitPrice = Number(card.getAttribute('data-monthly')) * months;
+      var min = Number(card.getAttribute('data-min'));
+      var unit = card.getAttribute('data-unit');
+      var flat = card.hasAttribute('data-flat');
+      card.querySelector('[data-amt]').textContent = inr(unitPrice);
+      card.querySelector('[data-per]').textContent = period;
+      var plural = min === 1 ? unit : unit === 'person' ? 'people' : unit + 's';
+      card.querySelector('[data-minnote]').textContent = flat
+        ? 'Flat per workspace (' + inr(unitPrice) + ' a ' + period + ')'
+        : 'Minimum ' + min + ' ' + plural + ' (' + inr(unitPrice * min) + ' a ' + period + ')';
     });
   }
   document.querySelectorAll('[data-toggle]').forEach(function (group) {
-    var key = group.getAttribute('data-toggle');
     var btns = [].slice.call(group.querySelectorAll('[role="radio"]'));
     var choose = function (b, focus) {
       btns.forEach(function (x) { var on = x === b; x.setAttribute('aria-checked', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1; });
-      state[key] = b.getAttribute('data-value');
+      cycle = b.getAttribute('data-value');
       render();
       if (focus) b.focus();
     };

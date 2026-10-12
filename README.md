@@ -7,4 +7,4 @@
 - `page/assets/`: Flowbit brand files from the flowbit-main zip (logo, mark, ribbons, check-in widget).
 - `build.py`: fills the slots and writes `flowbit.html`. Run `python3 build.py` after editing the source.
 
-Placeholders to replace before launch: the signup URL (`https://flowbit.com/signup?trial=15`), the `₹XX` prices, and the stat tiles marked "Placeholder".
+Trial and demo buttons link to useflowbit.com. The support address (support@flowbit.app) still needs confirming.
