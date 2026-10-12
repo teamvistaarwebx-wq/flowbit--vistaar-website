@@ -747,6 +747,34 @@ button{font:inherit;color:inherit}
 }
 </style>
 
+<style>
+/*
+ * Shell overrides for this page (the shell CSS above stays verbatim): a frosted-glass header that stays on
+ * top while the dark Flowbit body scrolls under it. Mostly-white glass keeps the black and red nav text at
+ * WCAG AA contrast whatever passes beneath.
+ */
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 100px); }
+body { background: #000; }
+.site-header[data-astro-cid-fzpbxy5g] {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40;
+  background:
+    linear-gradient(100deg, rgba(234, 193, 220, 0.28) 0%, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0) 66%, rgba(154, 128, 204, 0.24) 100%),
+    rgba(255, 255, 255, 0.84);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 32px -14px rgba(20, 8, 40, 0.45);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header[data-astro-cid-fzpbxy5g] { background: rgba(255, 255, 255, 0.97); }
+}
+@media (width >= 1024px) {
+  .site-nav[data-astro-cid-fzpbxy5g] { background: transparent; }
+}
+@media (width < 1024px) {
+  .site-nav[data-astro-cid-fzpbxy5g] { background: linear-gradient(160deg, #f7eef5 0%, #ffffff 45%, #f2eef9 100%); border-bottom: 1px solid rgba(20, 8, 40, 0.08); }
+}
+</style>
 <script>document.documentElement.classList.add('js');</script>
 <a class="skip-link" href="#main">Skip to content</a>
 <!-- ================= LAYER 1: Vistaar WebX header (verbatim from the About page) ================= -->
