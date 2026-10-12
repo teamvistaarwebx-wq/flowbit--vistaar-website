@@ -57,6 +57,9 @@ def main() -> None:
         "@@RIBBON_RIGHT@@": data_uri(ASSETS / "onboarding-right-outer.png"),
         "@@LOGO_WHITE@@": svg_inline(ASSETS / "flowbit-logo-white.svg", "lw"),
     }
+    for cover in sorted((ASSETS / "wiki-covers").glob("*.webp")):
+        key = "@@COVER_" + cover.stem.upper().replace("-", "_") + "@@"
+        replacements[key] = data_uri(cover)
     for key, value in replacements.items():
         if key not in html:
             raise SystemExit(f"placeholder missing: {key}")

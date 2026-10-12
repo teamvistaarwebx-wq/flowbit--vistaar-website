@@ -480,6 +480,94 @@
 .fb-btn--frost { background: rgba(0, 0, 0, 0.2); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .fb-btn--frost:hover { background: rgba(0, 0, 0, 0.3); }
 
+/* ---------------------------------------------------------------- wiki */
+/* Flowbit Wiki: the user manuals as a bento of covers (the PDFs' own covers), with an in-page reader. */
+.fb-wiki { padding-top: 0; }
+.fb-wiki .fb-glow--plum { left: -10%; top: 10%; width: 900px; height: 700px; opacity: 0.55; }
+.fb-wiki__grid { margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.fb-guide {
+  --fb-stroke: linear-gradient(150deg, color-mix(in srgb, var(--c) 55%, transparent) 0%, rgba(255, 255, 255, 0.07) 40%, rgba(255, 255, 255, 0.04) 70%, rgba(255, 255, 255, 0.14) 100%);
+  position: relative; overflow: hidden; border-radius: var(--fb-r-hero); padding: 20px; min-width: 0;
+  background: radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--c) 13%, transparent) 0%, transparent 65%), var(--fb-panel);
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 20px; align-items: stretch;
+}
+.fb-guide__cover { align-self: start; position: relative; display: block; padding: 0; border: 0; background: none; cursor: pointer; perspective: 900px; border-radius: 8px; }
+.fb-guide__cover img {
+  display: block; width: 100%; height: auto; border-radius: 6px;
+  box-shadow: 0 18px 36px -16px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 10px 40px -14px color-mix(in srgb, var(--c) 55%, transparent);
+  transform-origin: 0 50%; transition: transform 420ms var(--fb-ease-out);
+}
+.fb-guide:hover .fb-guide__cover img, .fb-guide__cover:focus-visible img { transform: rotateY(-14deg) translateX(2px); }
+.fb-guide__body { min-width: 0; display: flex; flex-direction: column; height: 100%; }
+.fb-guide__tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c); }
+.fb-guide h3 { margin-top: 8px; font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.01em; }
+.fb-guide__desc { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--fb-text-2); }
+.fb-guide__meta { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: #979797; font-variant-numeric: tabular-nums; }
+.fb-guide__meta span { display: inline-flex; align-items: center; gap: 6px; }
+.fb-guide__meta span + span::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: currentColor; margin-right: 8px; opacity: 0.7; }
+.fb-guide__actions { margin-top: auto; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.fb-guide__actions .fb-btn { min-height: 40px; padding: 8px 16px; font-size: 14px; }
+.fb-btn--icon { width: 40px; padding: 0 !important; }
+.fb-guide--feature { grid-template-columns: minmax(0, 1fr); padding: clamp(22px, 3vw, 32px); }
+.fb-guide--feature .fb-guide__cover { max-width: 230px; }
+.fb-guide--feature h3 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.fb-guide--feature .fb-guide__desc { font-size: 15.5px; color: rgba(255, 255, 255, 0.78); }
+.fb-guide--feature .fb-guide__actions .fb-btn { min-height: 46px; padding-inline: 22px; }
+.fb-guide__start { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 24px; padding-inline: 10px; border-radius: 999px; font-size: 11px; font-weight: 600; background: rgba(234, 193, 220, 0.14); color: var(--fb-blush); margin-bottom: 12px; }
+.fb-wiki__foot { margin-top: 20px; font-size: 13px; color: #979797; }
+
+@media (min-width: 640px) {
+  .fb-wiki__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fb-guide--feature { grid-column: 1 / -1; grid-template-columns: 200px minmax(0, 1fr); align-items: center; }
+}
+@media (min-width: 1100px) {
+  .fb-wiki__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); }
+  .fb-guide--feature { grid-column: 1; grid-row: 1 / span 2; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .fb-guide--feature .fb-guide__cover { max-width: 250px; }
+  .fb-guide:not(.fb-guide--feature) { grid-template-columns: 128px minmax(0, 1fr); }
+}
+
+/* Reader popup */
+.fb-reader {
+  width: min(1100px, calc(100vw - 32px)); height: calc(100dvh - 48px); max-width: none; max-height: none; margin: auto;
+  padding: 0; border: 0; border-radius: var(--fb-r-hero); overflow: hidden; color: var(--fb-text); background: #121114;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  font-family: var(--fb-font); color-scheme: dark;
+}
+.fb-reader[open] { display: flex; flex-direction: column; animation: fb-scale-in 260ms var(--fb-ease-out); }
+.fb-reader::backdrop { background: rgba(6, 3, 12, 0.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.fb-reader__bar { flex: none; display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); background: radial-gradient(60% 140% at 0% 0%, rgba(116, 76, 106, 0.35), transparent 70%), #17151a; }
+.fb-reader__mark { width: 22px; height: 22px; flex: none; }
+.fb-reader__titles { min-width: 0; flex: 1; }
+.fb-reader__kicker { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c, var(--fb-blush)); }
+.fb-reader__title { margin: 2px 0 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fb-reader__tools { display: flex; align-items: center; gap: 6px; flex: none; }
+.fb-reader__page { font-size: 13px; color: var(--fb-text-2); font-variant-numeric: tabular-nums; padding-inline: 8px; white-space: nowrap; }
+.fb-rbtn { display: inline-grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 10px; cursor: pointer; color: var(--fb-text); background: rgba(255, 255, 255, 0.06); text-decoration: none; transition: background-color 160ms var(--fb-ease-out); }
+.fb-rbtn:hover { background: rgba(255, 255, 255, 0.12); }
+.fb-rbtn svg { width: 18px; height: 18px; }
+.fb-rbtn--close { background: rgba(255, 255, 255, 0.1); }
+.fb-reader__body { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 24px 16px 40px; background: radial-gradient(70% 40% at 50% 0%, rgba(58, 40, 62, 0.45), transparent 70%), #0d0c0f; }
+.fb-reader__pages { margin-inline: auto; width: min(100%, var(--zoom-w, 820px)); display: grid; gap: 16px; }
+.fb-rpage { position: relative; aspect-ratio: var(--ar, 0.7067); background: #1c1a20; border-radius: 6px; overflow: hidden; box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06); }
+.fb-rpage canvas { display: block; width: 100%; height: 100%; }
+.fb-rpage::after { content: attr(data-n); position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: rgba(255, 255, 255, 0.35); }
+.fb-rpage.is-done::after { display: none; }
+.fb-reader__status { display: grid; place-items: center; gap: 14px; text-align: center; padding: 60px 16px; color: var(--fb-text-2); font-size: 14px; }
+.fb-reader__status[hidden] { display: none; }
+.fb-spinner { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid rgba(255, 255, 255, 0.15); border-top-color: var(--fb-blush); animation: fb-spin 900ms linear infinite; }
+.fb-toast { position: fixed; z-index: 50; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); max-width: calc(100vw - 32px); padding: 12px 18px; border-radius: 12px; background: #1f1f1f; color: #fff; font-family: var(--fb-font); font-size: 14px; box-shadow: var(--fb-shadow-pop); }
+.fb-toast[hidden] { display: none; }
+@media (max-width: 639px) {
+  .fb-reader { width: 100vw; height: 100dvh; border-radius: 0; }
+  .fb-reader__page, .fb-rbtn--zoom { display: none; }
+  .fb-reader__body { padding: 12px 8px 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fb-reader[open] { animation: none; }
+  .fb-guide:hover .fb-guide__cover img { transform: none; }
+}
+
 /* ---------------------------------------------------------------- keyframes */
 @keyframes fb-breathe { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.03); } }
 @keyframes fb-button-drift { from { background-position: 0 0, 0% 0; } to { background-position: 0 0, 100% 0; } }
@@ -585,6 +673,12 @@
     <symbol id="i-kanban" viewBox="0 0 24 24"><path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/></symbol>
     <symbol id="i-finger" viewBox="0 0 24 24"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .13-5.35 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
   </svg>
 
   <!-- ============ 1. HERO ============ -->
@@ -1041,6 +1135,93 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ 10. FLOWBIT WIKI (user manuals) ============ -->
+  <section class="fb-section fb-wiki" id="wiki" aria-labelledby="fb-wiki-title">
+    <div class="fb-glow fb-glow--plum" aria-hidden="true"></div>
+    <div class="container">
+      <div class="fb-head fb-reveal">
+        <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Flowbit — Wiki</span>
+        <h2 class="fb-h2" id="fb-wiki-title">The manual, minus the boredom.</h2>
+        <p class="fb-lead">Five guides, from your first login to your first payslip. Read them right here, or keep the PDF for later.</p>
+      </div>
+      <div class="fb-wiki__grid">
+        <article class="fb-guide fb-edge fb-reveal fb-guide--feature" style="--c:var(--fb-blush)" data-guide="getting-started" data-src="wiki/flowbit-getting-started.pdf" data-file="Flowbit-Getting-Started.pdf" data-title="Getting Started" data-tag="Flowbit · For everyone">
+          <button class="fb-guide__cover" type="button" data-read="getting-started" aria-label="Read Getting Started"><img src="@@COVER_GETTING_STARTED@@" alt="" width="640" height="906" loading="lazy"></button>
+          <div class="fb-guide__body">
+            <span class="fb-guide__start">Start here</span><p class="fb-guide__tag">Flowbit · For everyone</p>
+            <h3>Getting Started</h3>
+            <p class="fb-guide__desc">Sign up, choose a plan, set up your workspace, find your way around and secure your account. Read this first, whatever your role.</p>
+            <p class="fb-guide__meta"><span>26 pages</span><span>16 topics</span><span>PDF · 2.2 MB</span></p>
+            <div class="fb-guide__actions"><button class="fb-btn fb-btn--primary" type="button" data-read="getting-started"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Read guide</button><a class="fb-btn fb-btn--ghost" href="wiki/flowbit-getting-started.pdf" download="Flowbit-Getting-Started.pdf" data-download="getting-started" aria-label="Download Getting Started (PDF, 2.2 MB)"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg>Download PDF</a></div>
+          </div>
+        </article>
+        <article class="fb-guide fb-edge fb-reveal" style="--c:var(--fb-work)" data-guide="work-guide" data-src="wiki/flowbit-work-guide.pdf" data-file="Flowbit-Work-Guide.pdf" data-title="Work Guide" data-tag="Work · Tasks">
+          <button class="fb-guide__cover" type="button" data-read="work-guide" aria-label="Read Work Guide"><img src="@@COVER_WORK_GUIDE@@" alt="" width="640" height="906" loading="lazy"></button>
+          <div class="fb-guide__body">
+            <p class="fb-guide__tag">Work · Tasks</p>
+            <h3>Work Guide</h3>
+            <p class="fb-guide__desc">Tasks, projects, meetings, posts, time, whiteboards, reports and Arc, step by step.</p>
+            <p class="fb-guide__meta"><span>31 pages</span><span>27 topics</span><span>PDF · 2.7 MB</span></p>
+            <div class="fb-guide__actions"><button class="fb-btn fb-btn--primary" type="button" data-read="work-guide"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Read</button><a class="fb-btn fb-btn--ghost fb-btn--icon" href="wiki/flowbit-work-guide.pdf" download="Flowbit-Work-Guide.pdf" data-download="work-guide" aria-label="Download Work Guide (PDF, 2.7 MB)"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg></a></div>
+          </div>
+        </article>
+        <article class="fb-guide fb-edge fb-reveal" style="--c:var(--fb-muster)" data-guide="muster-hr-payroll-guide" data-src="wiki/flowbit-muster-hr-payroll-guide.pdf" data-file="Flowbit-Muster-Hr-Payroll-Guide.pdf" data-title="HR and Payroll Guide" data-tag="Muster · HR and payroll">
+          <button class="fb-guide__cover" type="button" data-read="muster-hr-payroll-guide" aria-label="Read HR and Payroll Guide"><img src="@@COVER_MUSTER_HR_PAYROLL_GUIDE@@" alt="" width="640" height="906" loading="lazy"></button>
+          <div class="fb-guide__body">
+            <p class="fb-guide__tag">Muster · HR and payroll</p>
+            <h3>HR and Payroll Guide</h3>
+            <p class="fb-guide__desc">Employees, attendance, leave, payroll, salary tax, claims, letters and HR settings.</p>
+            <p class="fb-guide__meta"><span>54 pages</span><span>26 topics</span><span>PDF · 6.7 MB</span></p>
+            <div class="fb-guide__actions"><button class="fb-btn fb-btn--primary" type="button" data-read="muster-hr-payroll-guide"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Read</button><a class="fb-btn fb-btn--ghost fb-btn--icon" href="wiki/flowbit-muster-hr-payroll-guide.pdf" download="Flowbit-Muster-Hr-Payroll-Guide.pdf" data-download="muster-hr-payroll-guide" aria-label="Download HR and Payroll Guide (PDF, 6.7 MB)"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg></a></div>
+          </div>
+        </article>
+        <article class="fb-guide fb-edge fb-reveal" style="--c:var(--fb-folio)" data-guide="folio-billing-guide" data-src="wiki/flowbit-folio-billing-guide.pdf" data-file="Flowbit-Folio-Billing-Guide.pdf" data-title="Billing Guide" data-tag="Folio · Invoicing">
+          <button class="fb-guide__cover" type="button" data-read="folio-billing-guide" aria-label="Read Billing Guide"><img src="@@COVER_FOLIO_BILLING_GUIDE@@" alt="" width="640" height="906" loading="lazy"></button>
+          <div class="fb-guide__body">
+            <p class="fb-guide__tag">Folio · Invoicing</p>
+            <h3>Billing Guide</h3>
+            <p class="fb-guide__desc">GST invoices, quotes, receipts, collections, expenses, P&amp;L, Tally export and e-invoice.</p>
+            <p class="fb-guide__meta"><span>39 pages</span><span>21 topics</span><span>PDF · 3.4 MB</span></p>
+            <div class="fb-guide__actions"><button class="fb-btn fb-btn--primary" type="button" data-read="folio-billing-guide"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Read</button><a class="fb-btn fb-btn--ghost fb-btn--icon" href="wiki/flowbit-folio-billing-guide.pdf" download="Flowbit-Folio-Billing-Guide.pdf" data-download="folio-billing-guide" aria-label="Download Billing Guide (PDF, 3.4 MB)"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg></a></div>
+          </div>
+        </article>
+        <article class="fb-guide fb-edge fb-reveal" style="--c:#4fd1c5" data-guide="employee-self-service-guide" data-src="wiki/flowbit-employee-self-service-guide.pdf" data-file="Flowbit-Employee-Self-Service-Guide.pdf" data-title="Employee Self-Service" data-tag="Muster · For every employee">
+          <button class="fb-guide__cover" type="button" data-read="employee-self-service-guide" aria-label="Read Employee Self-Service"><img src="@@COVER_EMPLOYEE_SELF_SERVICE_GUIDE@@" alt="" width="640" height="906" loading="lazy"></button>
+          <div class="fb-guide__body">
+            <p class="fb-guide__tag">Muster · For every employee</p>
+            <h3>Employee Self-Service</h3>
+            <p class="fb-guide__desc">Check in, take breaks, apply for leave, download payslips, declare tax and file claims.</p>
+            <p class="fb-guide__meta"><span>23 pages</span><span>12 topics</span><span>PDF · 2.3 MB</span></p>
+            <div class="fb-guide__actions"><button class="fb-btn fb-btn--primary" type="button" data-read="employee-self-service-guide"><svg class="fb-ico" aria-hidden="true"><use href="#i-book"/></svg>Read</button><a class="fb-btn fb-btn--ghost fb-btn--icon" href="wiki/flowbit-employee-self-service-guide.pdf" download="Flowbit-Employee-Self-Service-Guide.pdf" data-download="employee-self-service-guide" aria-label="Download Employee Self-Service (PDF, 2.3 MB)"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg></a></div>
+          </div>
+        </article>
+      </div>
+      <p class="fb-wiki__foot">Flowbit 2.0 · October 2026 · Screens from the demo workspace "Vistaar WebX".</p>
+    </div>
+  </section>
+
+  <dialog class="fb-reader" id="fb-reader" aria-labelledby="fb-reader-title">
+    <div class="fb-reader__bar">
+      <span class="fb-reader__mark" aria-hidden="true">@@MARK_WHITE@@</span>
+      <div class="fb-reader__titles">
+        <p class="fb-reader__kicker" data-reader-kicker>Flowbit Wiki</p>
+        <h2 class="fb-reader__title" id="fb-reader-title" data-reader-title>Guide</h2>
+      </div>
+      <div class="fb-reader__tools">
+        <span class="fb-reader__page" data-reader-page aria-live="polite"></span>
+        <button class="fb-rbtn fb-rbtn--zoom" type="button" data-zoom="-1" aria-label="Zoom out"><svg class="fb-ico" aria-hidden="true"><use href="#i-minus"/></svg></button>
+        <button class="fb-rbtn fb-rbtn--zoom" type="button" data-zoom="1" aria-label="Zoom in"><svg class="fb-ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <a class="fb-rbtn" href="#" download data-reader-download aria-label="Download PDF"><svg class="fb-ico" aria-hidden="true"><use href="#i-download"/></svg></a>
+        <button class="fb-rbtn fb-rbtn--close" type="button" data-reader-close aria-label="Close reader"><svg class="fb-ico" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+    </div>
+    <div class="fb-reader__body" data-reader-scroll>
+      <div class="fb-reader__status" data-reader-status><span class="fb-spinner" aria-hidden="true"></span><span data-reader-msg>Opening the guide…</span></div>
+      <div class="fb-reader__pages" data-reader-pages></div>
+    </div>
+  </dialog>
+  <p class="fb-toast" data-toast role="status" hidden></p>
 </main>
 
 <!-- ================= LAYER 1: Vistaar WebX footer (verbatim from the About page) ================= -->
@@ -1194,5 +1375,166 @@
     });
     setOpen(faqItems[0], true);
   }
+  /* ---------- Flowbit Wiki: reader popup (PDF.js) and downloads ---------- */
+  var PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+  var WORKER = 'vendor/pdf.worker.min.js';
+  var toastEl = document.querySelector('[data-toast]'), toastTimer;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg; toastEl.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.hidden = true; }, 4200);
+  }
+
+  /* Downloads: inside the claude.ai viewer, files go through the `downloads` capability (plain download
+     links are inert there). Anywhere else, the <a download> link does the job on its own. */
+  var inViewer = !!(window.claude && typeof window.claude.use === 'function');
+  var downloadsNs = null;
+  var downloadsReady = inViewer ? window.claude.use('downloads').then(function (ns) { downloadsNs = ns; return ns; }, function () { return null; }) : Promise.resolve(null);
+  function saveGuide(src, filename) {
+    return downloadsReady.then(function (ns) {
+      if (!ns) { window.open(src, '_blank', 'noopener'); return; }
+      return fetch(src).then(function (r) { if (!r.ok) throw new Error('fetch'); return r.blob(); })
+        .then(function (blob) { return ns.save({ filename: filename, data: blob }); })
+        .catch(function (err) {
+          if (err && (err.code === 'declined' || err.code === 'rate_limited')) return;
+          toast('Couldn’t start the download here. Try again from the published site.');
+        });
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[download]');
+    if (!a || !inViewer) return;
+    e.preventDefault();
+    saveGuide(a.getAttribute('href'), a.getAttribute('download') || 'Flowbit-Guide.pdf');
+  });
+
+  var reader = document.getElementById('fb-reader');
+  if (reader) {
+    var pagesEl = reader.querySelector('[data-reader-pages]');
+    var scrollEl = reader.querySelector('[data-reader-scroll]');
+    var statusEl = reader.querySelector('[data-reader-status]');
+    var msgEl = reader.querySelector('[data-reader-msg]');
+    var pageLabel = reader.querySelector('[data-reader-page]');
+    var dlLink = reader.querySelector('[data-reader-download]');
+    var libPromise = null, doc = null, token = 0, pageObserver = null, zoomW = 820;
+
+    var loadLib = function () {
+      if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+      if (!libPromise) libPromise = new Promise(function (resolve, reject) {
+        var sc = document.createElement('script');
+        sc.src = PDFJS; sc.async = true;
+        sc.onload = function () { window.pdfjsLib ? resolve(window.pdfjsLib) : reject(new Error('lib')); };
+        sc.onerror = function () { libPromise = null; reject(new Error('lib')); };
+        document.head.appendChild(sc);
+      });
+      return libPromise;
+    };
+    var showStatus = function (text, busy) {
+      statusEl.hidden = false; msgEl.textContent = text;
+      statusEl.querySelector('.fb-spinner').style.display = busy ? '' : 'none';
+    };
+    var renderPage = function (box, myToken) {
+      if (box.dataset.state) return;
+      box.dataset.state = 'busy';
+      doc.getPage(Number(box.dataset.n)).then(function (page) {
+        if (myToken !== token) return;
+        var base = page.getViewport({ scale: 1 });
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var vp = page.getViewport({ scale: (box.clientWidth / base.width) * dpr });
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.floor(vp.width); canvas.height = Math.floor(vp.height);
+        canvas.setAttribute('aria-hidden', 'true');
+        return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () {
+          if (myToken !== token) return;
+          box.textContent = ''; box.appendChild(canvas); box.classList.add('is-done'); box.dataset.state = 'done';
+        });
+      }).catch(function () { box.dataset.state = ''; });
+    };
+    var buildPages = function () {
+      var myToken = token;
+      if (pageObserver) pageObserver.disconnect();
+      pagesEl.textContent = '';
+      pageObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) renderPage(en.target, myToken); });
+      }, { root: scrollEl, rootMargin: '800px 0px' });
+      return doc.getPage(1).then(function (p1) {
+        var v = p1.getViewport({ scale: 1 });
+        pagesEl.style.setProperty('--ar', (v.width / v.height).toFixed(4));
+        for (var n = 1; n <= doc.numPages; n++) {
+          var box = document.createElement('div');
+          box.className = 'fb-rpage'; box.dataset.n = n;
+          box.setAttribute('role', 'img'); box.setAttribute('aria-label', 'Page ' + n + ' of ' + doc.numPages);
+          pagesEl.appendChild(box); pageObserver.observe(box);
+        }
+        updatePageLabel();
+      });
+    };
+    var updatePageLabel = function () {
+      if (!doc) { pageLabel.textContent = ''; return; }
+      var mid = scrollEl.scrollTop + scrollEl.clientHeight * 0.35, cur = 1;
+      var boxes = pagesEl.children;
+      for (var i = 0; i < boxes.length; i++) { if (boxes[i].offsetTop <= mid) cur = i + 1; else break; }
+      pageLabel.textContent = cur + ' / ' + doc.numPages;
+    };
+    scrollEl.addEventListener('scroll', function () { requestAnimationFrame(updatePageLabel); }, { passive: true });
+
+    var openGuide = function (card) {
+      token++;
+      var myToken = token;
+      reader.style.setProperty('--c', getComputedStyle(card).getPropertyValue('--c'));
+      reader.querySelector('[data-reader-title]').textContent = card.dataset.title;
+      reader.querySelector('[data-reader-kicker]').textContent = 'Flowbit Wiki · ' + card.dataset.tag;
+      dlLink.setAttribute('href', card.dataset.src);
+      dlLink.setAttribute('download', card.dataset.file);
+      pagesEl.textContent = ''; pageLabel.textContent = ''; scrollEl.scrollTop = 0;
+      showStatus('Opening the guide…', true);
+      document.documentElement.style.overflow = 'hidden';
+      if (!reader.open) reader.showModal();
+      loadLib().then(function (lib) {
+        lib.GlobalWorkerOptions.workerSrc = WORKER;
+        return lib.getDocument({ url: card.dataset.src }).promise;
+      }).then(function (pdf) {
+        if (myToken !== token) { pdf.destroy(); return; }
+        doc = pdf;
+        return buildPages().then(function () { statusEl.hidden = true; });
+      }).catch(function () {
+        if (myToken !== token) return;
+        showStatus('The reader couldn’t open this guide here. Use the download button above instead.', false);
+      });
+    };
+    var closeReader = function () { if (reader.open) reader.close(); };
+    reader.addEventListener('close', function () {
+      token++;
+      if (pageObserver) pageObserver.disconnect();
+      if (doc) { doc.destroy(); doc = null; }
+      pagesEl.textContent = '';
+      document.documentElement.style.overflow = '';
+    });
+    reader.addEventListener('click', function (e) { if (e.target === reader) closeReader(); });
+    reader.querySelector('[data-reader-close]').addEventListener('click', closeReader);
+    reader.querySelectorAll('[data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        zoomW = Math.max(560, Math.min(1400, zoomW + Number(b.dataset.zoom) * 140));
+        pagesEl.style.setProperty('--zoom-w', zoomW + 'px');
+        if (doc) {
+          var ratio = scrollEl.scrollTop / Math.max(1, scrollEl.scrollHeight);
+          [].forEach.call(pagesEl.children, function (box) { box.dataset.state = ''; box.classList.remove('is-done'); });
+          token++; var t = token;
+          if (pageObserver) pageObserver.disconnect();
+          pageObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) renderPage(en.target, t); });
+          }, { root: scrollEl, rootMargin: '800px 0px' });
+          requestAnimationFrame(function () {
+            scrollEl.scrollTop = ratio * scrollEl.scrollHeight;
+            [].forEach.call(pagesEl.children, function (box) { pageObserver.observe(box); });
+          });
+        }
+      });
+    });
+    document.querySelectorAll('[data-read]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openGuide(btn.closest('[data-guide]')); });
+    });
+  }
+
 })();
 </script>
