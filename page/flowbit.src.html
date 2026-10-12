@@ -686,13 +686,30 @@ body { background: #000; }
 .site-header[data-astro-cid-fzpbxy5g] {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40;
   background:
-    linear-gradient(100deg, rgba(234, 193, 220, 0.28) 0%, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, 0) 66%, rgba(154, 128, 204, 0.24) 100%),
-    rgba(255, 255, 255, 0.84);
-  -webkit-backdrop-filter: blur(18px) saturate(170%);
-  backdrop-filter: blur(18px) saturate(170%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 32px -14px rgba(20, 8, 40, 0.45);
+    linear-gradient(100deg, rgba(234, 193, 220, 0.38) 0%, rgba(255, 255, 255, 0.06) 30%, rgba(255, 255, 255, 0.06) 68%, rgba(154, 128, 204, 0.34) 100%),
+    rgba(255, 255, 255, 0.66);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(26px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    0 16px 40px -16px rgba(20, 8, 40, 0.55);
 }
+/* A light streak along the bottom edge, brighter in the middle, like light caught in glass. */
+.site-header[data-astro-cid-fzpbxy5g]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 30%, rgba(234, 193, 220, 0.95) 50%, rgba(255, 255, 255, 0.9) 70%, transparent 100%);
+}
+@media (width >= 1024px) {
+  /* The current page sits on a frosted pill, so the red link keeps AA contrast whatever scrolls beneath. */
+  .site-nav__link[data-astro-cid-fzpbxy5g][aria-current=page] {
+    padding-inline: 14px; min-height: 40px; margin-block: 2px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.95), 0 6px 18px -8px rgba(116, 76, 106, 0.55);
+  }
+}
+.site-header__toggle[data-astro-cid-fzpbxy5g] { background: rgba(255, 255, 255, 0.7); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.95), 0 6px 18px -8px rgba(20, 8, 40, 0.45); }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header[data-astro-cid-fzpbxy5g] { background: rgba(255, 255, 255, 0.97); }
 }
