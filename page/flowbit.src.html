@@ -483,7 +483,7 @@
 /* ---------------------------------------------------------------- wiki */
 /* The Flowbit page carries a Wiki teaser (a fan of the guide covers); "Open the Flowbit Wiki" switches to the
    Wiki view (#flowbit-wiki): every user manual as a cover card, filters by role, and the in-page reader. */
-.fb-wt-sec { padding-top: 0; }
+.fb-wt-sec { padding-top: 0; padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
 .fb-wt {
   --fb-stroke: var(--fb-edge-frame);
   position: relative; overflow: hidden; isolation: isolate; border-radius: var(--fb-r-hero);
@@ -1159,22 +1159,6 @@
     </div>
   </section>
 
-  <!-- ============ 9. FINAL CTA ============ -->
-  <section class="fb-cta-sec" aria-labelledby="fb-cta-title">
-    <div class="container">
-      <div class="fb-cta fb-reveal">
-        <span class="fb-cta__logo" role="img" aria-label="Flowbit">@@LOGO_WHITE@@</span>
-        <p class="fb-cta__tag">Everything in flow. Nothing in the way</p>
-        <h2 id="fb-cta-title">Start with everything switched on.</h2>
-        <p class="fb-cta__body">All four products for 15 days. No card needed, nothing to install, ₹ and GST built in.</p>
-        <div class="fb-btn-row">
-          <a class="fb-btn fb-btn--black" href="https://www.useflowbit.com/signup">Start your 15-day trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="fb-btn fb-btn--frost" href="https://www.useflowbit.com/contact">Book a demo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ 10. FLOWBIT WIKI teaser (opens the Wiki view) ============ -->
   <section class="fb-section fb-wt-sec" id="wiki" aria-labelledby="fb-wiki-title">
     <div class="container">
@@ -1198,6 +1182,22 @@
       </div>
     </div>
   </section>
+  <!-- ============ 9. FINAL CTA ============ -->
+  <section class="fb-cta-sec" aria-labelledby="fb-cta-title">
+    <div class="container">
+      <div class="fb-cta fb-reveal">
+        <span class="fb-cta__logo" role="img" aria-label="Flowbit">@@LOGO_WHITE@@</span>
+        <p class="fb-cta__tag">Everything in flow. Nothing in the way</p>
+        <h2 id="fb-cta-title">Start with everything switched on.</h2>
+        <p class="fb-cta__body">All four products for 15 days. No card needed, nothing to install, ₹ and GST built in.</p>
+        <div class="fb-btn-row">
+          <a class="fb-btn fb-btn--black" href="https://www.useflowbit.com/signup">Start your 15-day trial <svg class="fb-ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="fb-btn fb-btn--frost" href="https://www.useflowbit.com/contact">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </div>
 
   <!-- ================= FLOWBIT WIKI view (#flowbit-wiki) ================= -->
