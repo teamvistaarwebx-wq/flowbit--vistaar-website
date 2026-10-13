@@ -254,25 +254,103 @@
 .fb-dash__grid { margin-top: 12px; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
 
 /* ---------------------------------------------------------------- problem / promise */
-.fb-split { display: grid; gap: 16px; margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); }
-.fb-mess, .fb-calm { position: relative; border-radius: var(--fb-r-hero); padding: clamp(22px, 3vw, 36px); min-width: 0; }
-.fb-mess { background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0 10px, transparent 10px 20px), var(--fb-panel); box-shadow: inset 0 0 0 1px var(--fb-border); }
-.fb-calm { background: radial-gradient(70% 90% at 100% 0%, rgba(116, 76, 106, 0.55), transparent 70%), radial-gradient(60% 80% at 0% 100%, rgba(42, 21, 100, 0.6), transparent 70%), #121014; }
-.fb-calm { --fb-stroke: var(--fb-edge-frame); }
-.fb-split h3 { font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.01em; }
-.fb-split .fb-label { color: var(--fb-text-2); }
-.fb-chaos { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-.fb-chaos li {
-  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px;
-  background: #222; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); font-size: 13.5px; color: var(--fb-text-2);
-  transform: rotate(var(--r, 0deg)); transition: transform 300ms var(--fb-ease-out);
+/* Before: the inherited stack as floating, slightly crooked app cards over a stressed desk.
+   A tangle of lines runs into the Flowbit icon and leaves as clean beams.
+   After: one tilted glass panel showing the real dashboard and what changes. */
+.fb-prob { overflow: clip; }
+.fb-prob .fb-glow--plum { left: 40%; top: 30%; width: 900px; height: 700px; opacity: 0.6; }
+.fb-prob__stage { position: relative; margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: center; max-width: 760px; margin-inline: auto; }
+@media (min-width: 1200px) { .fb-prob__stage { max-width: none; } }
+.fb-tagpill { display: inline-flex; align-items: center; height: 26px; padding-inline: 12px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #fff; }
+.fb-tagpill--before { background: #c4262b; box-shadow: 0 6px 18px -6px rgba(196, 38, 43, 0.7); }
+.fb-tagpill--after { background: rgba(8, 173, 147, 0.22); color: #6ff0d6; box-shadow: inset 0 0 0 1px rgba(111, 240, 214, 0.35); }
+
+/* Before */
+.fb-before {
+  --fb-stroke: linear-gradient(160deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05) 45%, rgba(255, 255, 255, 0.1));
+  position: relative; overflow: hidden; border-radius: var(--fb-r-hero); padding: clamp(20px, 2.6vw, 28px);
+  background: radial-gradient(90% 60% at 20% 0%, rgba(116, 76, 106, 0.45), transparent 70%), radial-gradient(80% 50% at 60% 100%, rgba(196, 38, 43, 0.18), transparent 70%), linear-gradient(180deg, #221a2c 0%, #1a1420 100%);
+  min-width: 0;
 }
-.fb-mess:hover .fb-chaos li { transform: rotate(calc(var(--r, 0deg) * -1.4)) translateY(-2px); }
-.fb-chaos li svg { width: 14px; height: 14px; color: var(--fb-text-3); }
-.fb-chaos__count { margin-top: 24px; font-size: 13px; color: var(--fb-text-3); }
-.fb-calm__list { margin-top: 22px; display: grid; gap: 12px; }
-.fb-calm__list li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(255, 255, 255, 0.86); }
-.fb-calm__list svg { margin-top: 2px; color: var(--fb-blush); }
+.fb-before h3, .fb-after h3 { margin-top: 14px; font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.01em; }
+.fb-chaos2 { position: relative; margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+.fb-cc {
+  position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px;
+  background: rgba(30, 24, 38, 0.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 18px 30px -16px rgba(0, 0, 0, 0.9);
+  transform: rotate(var(--r, 0deg)); animation: fb-bob var(--t, 7s) var(--fb-ease-in-out) infinite; animation-delay: var(--d, 0s);
+  max-width: 100%;
+}
+.fb-cc__app { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: var(--app); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 14px -6px var(--app); }
+.fb-cc__app svg { width: 20px; height: 20px; stroke-width: 1.8; }
+.fb-cc__txt { min-width: 0; display: grid; gap: 6px; }
+.fb-cc__txt b { font-size: 13.5px; font-weight: 500; line-height: 1.3; color: rgba(255, 255, 255, 0.9); }
+.fb-cc__txt i { display: block; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.12); width: 80%; }
+.fb-cc__txt i + i { width: 52%; }
+.fb-cc__badge { position: absolute; top: -9px; right: -9px; display: grid; place-items: center; min-width: 24px; height: 24px; padding-inline: 6px; border-radius: 999px; background: #e5383d; color: #fff; font-size: 12px; font-weight: 700; box-shadow: 0 0 0 3px #1f1826; }
+.fb-cc__badge::after { content: ""; position: absolute; inset: -3px; border-radius: inherit; border: 2px solid rgba(229, 56, 61, 0.7); animation: fb-ping 2.4s ease-out infinite; }
+.fb-cc--note { flex-direction: column; align-items: flex-start; gap: 0; width: 150px; padding: 22px 16px 18px; border-radius: 4px; background: linear-gradient(160deg, #fbe7a1 0%, #f3d77c 100%); box-shadow: 0 22px 30px -16px rgba(0, 0, 0, 0.9); color: #3b2c0c; font-size: 15px; font-weight: 500; line-height: 1.3; }
+.fb-cc--note::before { content: ""; position: absolute; top: -7px; left: 58%; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a8d, #d42a30 60%); box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45); }
+.fb-cc--msg { flex-direction: column; align-items: stretch; gap: 10px; }
+.fb-cc__who { display: flex; align-items: center; gap: 10px; }
+.fb-cc__avatar { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-size: 12px; font-weight: 600; color: #200c55; background: linear-gradient(140deg, #f4e5f0, #c58ab9); }
+.fb-cc__file { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; background: rgba(255, 255, 255, 0.06); }
+.fb-cc__file span:first-child { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; background: #e5383d; font-size: 9px; font-weight: 700; color: #fff; letter-spacing: 0.02em; }
+.fb-cc__file b { display: block; font-size: 13px; font-weight: 500; }
+.fb-cc__file small { font-size: 11px; color: var(--fb-text-3); }
+.fb-before__art { display: block; width: 100%; max-width: 520px; height: auto; margin: 18px auto -28px; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%); mask-image: linear-gradient(to bottom, transparent 0%, #000 22%); }
+
+/* Bridge */
+.fb-bridge { position: relative; height: 120px; display: grid; place-items: center; }
+.fb-bridge svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.fb-bridge__mess { stroke: rgba(202, 129, 184, 0.35); stroke-width: 1.2; fill: none; }
+.fb-bridge__beam { fill: none; stroke: url(#fb-beam); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 10 14; animation: fb-dash 1.6s linear infinite; }
+.fb-bridge__icon { position: relative; z-index: 1; width: 96px; height: auto; filter: drop-shadow(0 0 28px rgba(187, 98, 165, 0.65)); animation: fb-breathe 5s var(--fb-ease-in-out) infinite; }
+.fb-bridge__desk { display: block; }
+.fb-bridge__mobile { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); background: linear-gradient(180deg, rgba(202, 129, 184, 0.1), rgba(202, 129, 184, 0.8), rgba(111, 240, 214, 0.6)); }
+
+/* After */
+.fb-after { position: relative; perspective: 1800px; min-width: 0; }
+.fb-after__panel {
+  --fb-stroke: linear-gradient(150deg, rgba(234, 193, 220, 0.75) 0%, rgba(154, 128, 204, 0.35) 35%, rgba(255, 255, 255, 0.06) 65%, rgba(234, 193, 220, 0.45) 100%);
+  position: relative; border-radius: 18px; padding: clamp(20px, 2.6vw, 28px);
+  background: radial-gradient(80% 50% at 80% 0%, rgba(187, 98, 165, 0.35), transparent 70%), linear-gradient(170deg, rgba(62, 30, 100, 0.92) 0%, rgba(40, 22, 66, 0.95) 55%, rgba(30, 18, 46, 0.97) 100%);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  box-shadow: 10px 12px 0 -4px rgba(93, 64, 131, 0.55), 0 50px 100px -40px rgba(116, 76, 106, 0.8), 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+  transform-origin: 0% 50%; transition: transform 800ms var(--fb-ease-out);
+}
+.fb-after__screen { margin-top: 18px; padding: 8px; border-radius: 12px; background: #0e0c12; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 40px -20px rgba(0, 0, 0, 0.9); }
+.fb-after__screen img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.fb-after__feats { margin-top: 22px; display: grid; gap: 16px 22px; grid-template-columns: minmax(0, 1fr); }
+.fb-after__feats li { display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, 0.78); }
+.fb-after__feats b { display: block; font-weight: 600; color: #fff; }
+.fb-after__ico { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 35%, transparent); }
+.fb-after__ico svg { width: 18px; height: 18px; }
+
+.fb-prob__foot { margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem); display: flex; align-items: center; justify-content: center; gap: 14px; }
+.fb-prob__node { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: var(--fb-text-2); background: #121016; box-shadow: inset 0 0 0 1px var(--fb-border-strong); }
+.fb-prob__node svg { width: 18px; height: 18px; }
+.fb-prob__line { flex: 1; max-width: 160px; height: 0; border-top: 1px dashed rgba(255, 255, 255, 0.22); }
+.fb-prob__quote { padding: 12px 22px; border-radius: 999px; font-size: 14px; color: rgba(255, 255, 255, 0.84); background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--fb-border-strong); text-align: center; }
+
+@media (min-width: 640px) {
+  .fb-after__feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1199px) {
+  .fb-bridge__desk { display: none; }
+  .fb-prob__line { display: none; }
+}
+@media (min-width: 1200px) {
+  .fb-prob__stage { grid-template-columns: minmax(0, 1fr) clamp(110px, 11vw, 170px) minmax(0, 1.12fr); gap: 0; }
+  .fb-bridge { height: 100%; min-height: 420px; }
+  .fb-bridge__mobile { display: none; }
+  .fb-chaos2 { display: block; height: 420px; margin-top: 18px; }
+  .fb-cc { position: absolute; left: var(--x); top: var(--y); width: var(--w, 47%); }
+  .fb-cc--note { width: var(--w, 32%); }
+  .fb-before__art { margin-top: -96px; }
+  .fb-after__panel { transform: rotateY(-15deg) rotateX(5deg) rotateZ(-1.5deg); }
+  .fb-after:hover .fb-after__panel { transform: rotateY(-6deg) rotateX(2deg) rotateZ(-0.5deg); }
+}
 
 /* ---------------------------------------------------------------- suite */
 .fb-suite .fb-glow--plum { left: 50%; top: -10%; width: 900px; height: 600px; transform: translateX(-50%); opacity: 0.55; }
@@ -613,6 +691,9 @@
 @keyframes fb-ribbon-float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(3px, -6px, 0) rotate(1.5deg); } }
 @keyframes fb-ribbon-float-b { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(-4px, 5px, 0) rotate(-1.5deg); } }
 @keyframes fb-sheen { 0% { transform: translateX(-120px); } 60%, 100% { transform: translateX(520px); } }
+@keyframes fb-bob { 0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--r, 0deg)); } 50% { transform: translate3d(0, -6px, 0) rotate(calc(var(--r, 0deg) + 0.8deg)); } }
+@keyframes fb-ping { 0% { transform: scale(1); opacity: 0.9; } 80%, 100% { transform: scale(1.8); opacity: 0; } }
+@keyframes fb-dash { to { stroke-dashoffset: -24; } }
 @keyframes fb-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes fb-spin { to { transform: rotate(360deg); } }
 @keyframes fb-draw { from { stroke-dasharray: 0 1000; } }
@@ -756,6 +837,9 @@ body { background: #000; }
     <symbol id="i-kanban" viewBox="0 0 24 24"><path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/></symbol>
     <symbol id="i-finger" viewBox="0 0 24 24"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .13-5.35 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
@@ -795,36 +879,72 @@ body { background: #000; }
   </section>
 
   <!-- ============ 2. PROBLEM / PROMISE ============ -->
-  <section class="fb-section" aria-labelledby="fb-problem-title" style="padding-top:clamp(2rem,1rem + 3vw,4rem)">
+  <section class="fb-section fb-prob" aria-labelledby="fb-problem-title" style="padding-top:clamp(2rem,1rem + 3vw,4rem)">
+    <div class="fb-glow fb-glow--plum" aria-hidden="true"></div>
     <div class="container">
       <div class="fb-head fb-reveal">
         <span class="fb-label"><svg class="fb-ico" aria-hidden="true"><use href="#i-link"/></svg>The problem</span>
         <h2 class="fb-h2" id="fb-problem-title">Five tools. None of them talk. You're the API.</h2>
       </div>
-      <div class="fb-split">
-        <div class="fb-mess fb-reveal" style="--i:1">
-          <span class="fb-label">Before</span>
-          <h3 style="margin-top:12px">The stack you inherited</h3>
-          <ul class="fb-chaos">
-            <li style="--r:-2deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-sheet"/></svg>attendance_OCT_final_v7.xlsx</li>
-            <li style="--r:1.5deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-chat"/></svg>Tasks living in a WhatsApp group</li>
-            <li style="--r:-1deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-orbit"/></svg>A CRM nobody has opened since March</li>
-            <li style="--r:2deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-doc"/></svg>Invoice_template (2).docx</li>
-            <li style="--r:-1.5deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-clip"/></svg>Leave requests on sticky notes</li>
-            <li style="--r:1deg"><svg class="fb-ico" aria-hidden="true"><use href="#i-mail"/></svg>"Can you resend that PDF?"</li>
+
+      <div class="fb-prob__stage">
+        <article class="fb-before fb-edge fb-reveal" aria-labelledby="fb-before-title">
+          <span class="fb-tagpill fb-tagpill--before">Before</span>
+          <h3 id="fb-before-title">The stack you inherited</h3>
+          <ul class="fb-chaos2">
+            <li class="fb-cc" style="--x:0%;--y:2%;--r:-3deg;--t:7s;--d:-1s">
+              <span class="fb-cc__app" style="--app:#1d8f4e"><svg class="fb-ico" aria-hidden="true"><use href="#i-sheet"/></svg></span>
+              <span class="fb-cc__txt"><b>attendance_OCT_final_v7.xlsx</b><i></i><i></i></span>
+            </li>
+            <li class="fb-cc" style="--x:52%;--y:0%;--r:2.5deg;--t:8s;--d:-3s">
+              <span class="fb-cc__app" style="--app:#1fae5b"><svg class="fb-ico" aria-hidden="true"><use href="#i-chat"/></svg></span>
+              <span class="fb-cc__txt"><b>Tasks living in a WhatsApp group</b><i></i><i></i></span>
+              <span class="fb-cc__badge" aria-label="12 unread">12</span>
+            </li>
+            <li class="fb-cc" style="--x:5%;--y:31%;--r:3deg;--t:9s;--d:-2s;--w:45%">
+              <span class="fb-cc__app" style="--app:#1b8fd6"><svg class="fb-ico" aria-hidden="true"><use href="#i-cloud"/></svg></span>
+              <span class="fb-cc__txt"><b>A CRM nobody has opened since March</b><i></i><i></i></span>
+            </li>
+            <li class="fb-cc" style="--x:53%;--y:30%;--r:-2deg;--t:7.5s;--d:-5s">
+              <span class="fb-cc__app" style="--app:#2b5fd9"><svg class="fb-ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+              <span class="fb-cc__txt"><b>Invoice_template (2).docx</b><i></i><i></i></span>
+            </li>
+            <li class="fb-cc fb-cc--note" style="--x:6%;--y:62%;--r:-8deg;--t:10s;--d:-4s">Leave requests on sticky notes</li>
+            <li class="fb-cc fb-cc--msg" style="--x:45%;--y:60%;--r:1.5deg;--t:8.5s;--d:-6s;--w:53%">
+              <span class="fb-cc__who"><span class="fb-cc__avatar" aria-hidden="true">NK</span><span class="fb-cc__txt"><b>"Can you resend that PDF?"</b></span></span>
+              <span class="fb-cc__file"><span aria-hidden="true">PDF</span><span><b>Final_version.pdf</b><small>2.4 MB</small></span></span>
+            </li>
           </ul>
-          <p class="fb-chaos__count">Same client, typed into four places. Spelled three ways.</p>
+          <img class="fb-before__art" src="@@PROBLEM_ART@@" width="503" height="186" alt="Illustration: a tired team member at a desk buried in paperwork.">
+        </article>
+
+        <div class="fb-bridge" aria-hidden="true">
+          <svg class="fb-bridge__desk" viewBox="0 0 200 400" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="fb-beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ca81b8"/><stop offset="1" stop-color="#eac1dc"/></linearGradient></defs><path class="fb-bridge__mess" d="M0 137 C15 260 43 210 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 152 C12 203 42 181 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 45 C13 170 77 95 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 100 C32 379 66 171 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 371 C12 343 53 100 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 62 C21 326 48 223 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 250 C23 219 43 77 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 94 C34 171 54 224 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__mess" d="M0 183 C20 318 71 128 100 200" vector-effect="non-scaling-stroke"/><path class="fb-bridge__beam" style="animation-delay:-0.0s" d="M100 200 C140 191 160 170 200 170" vector-effect="non-scaling-stroke"/><path class="fb-bridge__beam" style="animation-delay:-0.4s" d="M100 200 C140 196 160 188 200 188" vector-effect="non-scaling-stroke"/><path class="fb-bridge__beam" style="animation-delay:-0.8s" d="M100 200 C140 204 160 212 200 212" vector-effect="non-scaling-stroke"/><path class="fb-bridge__beam" style="animation-delay:-1.2s" d="M100 200 C140 209 160 230 200 230" vector-effect="non-scaling-stroke"/></svg>
+          <span class="fb-bridge__mobile"></span>
+          <img class="fb-bridge__icon" src="@@APP_ICON@@" alt="" width="987" height="943">
         </div>
-        <div class="fb-calm fb-edge fb-reveal" style="--i:2">
-          <span class="fb-label">After</span>
-          <h3 style="margin-top:12px">One connected work OS</h3>
-          <ul class="fb-calm__list">
-            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One login for the whole team, one bill for the whole company.</li>
-            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One client list. A won deal becomes a billable client by itself.</li>
-            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>One record per person, from joining letter to payslip.</li>
-            <li><svg class="fb-ico" aria-hidden="true"><use href="#i-check"/></svg>Rupees, GST, PF and IST as the default. Nothing to configure.</li>
-          </ul>
-        </div>
+
+        <article class="fb-after fb-reveal" style="--i:1" aria-labelledby="fb-after-title">
+          <div class="fb-after__panel fb-edge">
+            <span class="fb-tagpill fb-tagpill--after">After</span>
+            <h3 id="fb-after-title">One connected work OS</h3>
+            <div class="fb-after__screen"><img src="@@DASHBOARD_SM@@" width="900" height="738" alt="The Flowbit Home dashboard: tasks, projects, Arc and attendance on one screen." loading="lazy"></div>
+            <ul class="fb-after__feats">
+              <li><span class="fb-after__ico" style="--c:#b69cf0"><svg class="fb-ico" aria-hidden="true"><use href="#i-muster"/></svg></span><span><b>One login for the whole team,</b>one bill for the whole company.</span></li>
+              <li><span class="fb-after__ico" style="--c:var(--fb-muster)"><svg class="fb-ico" aria-hidden="true"><use href="#i-db"/></svg></span><span><b>One client list.</b>A won deal becomes a billable client by itself.</span></li>
+              <li><span class="fb-after__ico" style="--c:var(--fb-folio)"><svg class="fb-ico" aria-hidden="true"><use href="#i-user"/></svg></span><span><b>One record per person,</b>from joining letter to payslip.</span></li>
+              <li><span class="fb-after__ico" style="--c:#ff6fa8"><svg class="fb-ico" aria-hidden="true"><use href="#i-rupee"/></svg></span><span><b>Rupees, GST, PF and IST</b>as the default. Nothing to configure.</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="fb-prob__foot fb-reveal">
+        <span class="fb-prob__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-doc"/></svg></span>
+        <span class="fb-prob__line" aria-hidden="true"></span>
+        <p class="fb-prob__quote">Same client, typed into four places. Spelled three ways.</p>
+        <span class="fb-prob__line" aria-hidden="true"></span>
+        <span class="fb-prob__node" aria-hidden="true"><svg class="fb-ico"><use href="#i-doc"/></svg></span>
       </div>
     </div>
   </section>
