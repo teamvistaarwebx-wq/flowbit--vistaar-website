@@ -55,8 +55,6 @@ def main() -> None:
         "@@DASHBOARD@@": data_uri(ASSETS / "dashboard-home.jpg", max_width=2000, quality=84),
         "@@DASHBOARD_SM@@": data_uri(ASSETS / "dashboard-home.jpg", max_width=900, quality=80),
         "@@PROBLEM_ART@@": data_uri(ASSETS / "problem-desk.png", quality=90),
-        "@@RIBBON_LEFT@@": data_uri(ASSETS / "onboarding-left-outer.png"),
-        "@@RIBBON_RIGHT@@": data_uri(ASSETS / "onboarding-right-outer.png"),
         "@@LOGO_WHITE@@": svg_inline(ASSETS / "flowbit-logo-white.svg", "lw"),
     }
     for cover in sorted((ASSETS / "wiki-covers").glob("*.webp")):
